@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80AE25D1F5D9AAE00A81E75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE3491F5D0B6D00FB6195 /* Main.storyboard */; };
+		B80AE2611F5DA39700A81E75 /* Article.xib in Resources */ = {isa = PBXBuildFile; fileRef = B80AE2601F5DA39700A81E75 /* Article.xib */; };
+		B80AE2621F5DA39700A81E75 /* Article.xib in Resources */ = {isa = PBXBuildFile; fileRef = B80AE2601F5DA39700A81E75 /* Article.xib */; };
 		B83020521F5D12390014B165 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83020511F5D12390014B165 /* ShareViewController.swift */; };
 		B83020551F5D12390014B165 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B83020531F5D12390014B165 /* MainInterface.storyboard */; };
 		B83020591F5D12390014B165 /* YanShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B830204F1F5D12390014B165 /* YanShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -34,7 +37,7 @@
 		B844951D1F5D83C6004DEC7E /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B844951C1F5D83C6004DEC7E /* ArticleViewController.swift */; };
 		B844951E1F5D83C6004DEC7E /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B844951C1F5D83C6004DEC7E /* ArticleViewController.swift */; };
 		B86EE3461F5D0B6D00FB6195 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */; };
-		B86EE3481F5D0B6D00FB6195 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3471F5D0B6D00FB6195 /* ViewController.swift */; };
+		B86EE3481F5D0B6D00FB6195 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3471F5D0B6D00FB6195 /* MainViewController.swift */; };
 		B86EE34B1F5D0B6D00FB6195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE3491F5D0B6D00FB6195 /* Main.storyboard */; };
 		B86EE34D1F5D0B6D00FB6195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE34C1F5D0B6D00FB6195 /* Assets.xcassets */; };
 		B86EE3501F5D0B6D00FB6195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE34E1F5D0B6D00FB6195 /* LaunchScreen.storyboard */; };
@@ -45,7 +48,7 @@
 		B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C56C1F5D3686003319A5 /* AMInputView.swift */; };
 		B897C5701F5D3686003319A5 /* AMInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B897C56D1F5D3686003319A5 /* AMInputView.xib */; };
 		B897C5711F5D3686003319A5 /* AMInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B897C56D1F5D3686003319A5 /* AMInputView.xib */; };
-		B897C5721F5D3AFA003319A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3471F5D0B6D00FB6195 /* ViewController.swift */; };
+		B897C5721F5D3AFA003319A5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3471F5D0B6D00FB6195 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B80AE2601F5DA39700A81E75 /* Article.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Article.xib; sourceTree = "<group>"; };
 		B830204F1F5D12390014B165 /* YanShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = YanShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83020511F5D12390014B165 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		B83020541F5D12390014B165 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -102,7 +106,7 @@
 		B844951C1F5D83C6004DEC7E /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		B86EE3421F5D0B6D00FB6195 /* Yan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B86EE3471F5D0B6D00FB6195 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B86EE3471F5D0B6D00FB6195 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B86EE34A1F5D0B6D00FB6195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B86EE34C1F5D0B6D00FB6195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B86EE34F1F5D0B6D00FB6195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -187,9 +191,10 @@
 				B897C56B1F5D3686003319A5 /* AMInputView */,
 				B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */,
 				B897C5681F5D35CA003319A5 /* LogInViewController.swift */,
-				B86EE3471F5D0B6D00FB6195 /* ViewController.swift */,
+				B86EE3471F5D0B6D00FB6195 /* MainViewController.swift */,
 				B86EE3491F5D0B6D00FB6195 /* Main.storyboard */,
 				B844951C1F5D83C6004DEC7E /* ArticleViewController.swift */,
+				B80AE2601F5DA39700A81E75 /* Article.xib */,
 				B86EE34C1F5D0B6D00FB6195 /* Assets.xcassets */,
 				B86EE34E1F5D0B6D00FB6195 /* LaunchScreen.storyboard */,
 				B86EE3511F5D0B6D00FB6195 /* Info.plist */,
@@ -293,9 +298,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80AE25D1F5D9AAE00A81E75 /* Main.storyboard in Resources */,
 				B897C5711F5D3686003319A5 /* AMInputView.xib in Resources */,
 				B83020551F5D12390014B165 /* MainInterface.storyboard in Resources */,
 				B844950E1F5D7B49004DEC7E /* NextPageLoaderCell.xib in Resources */,
+				B80AE2621F5DA39700A81E75 /* Article.xib in Resources */,
 				B830205F1F5D129E0014B165 /* GetURL.js in Resources */,
 				B84495121F5D7B49004DEC7E /* NoResultsView.xib in Resources */,
 				B84495101F5D7B49004DEC7E /* NoResultsLoadingView.xib in Resources */,
@@ -310,6 +317,7 @@
 				B844950F1F5D7B49004DEC7E /* NoResultsLoadingView.xib in Resources */,
 				B86EE34D1F5D0B6D00FB6195 /* Assets.xcassets in Resources */,
 				B897C5701F5D3686003319A5 /* AMInputView.xib in Resources */,
+				B80AE2611F5DA39700A81E75 /* Article.xib in Resources */,
 				B84495111F5D7B49004DEC7E /* NoResultsView.xib in Resources */,
 				B86EE3581F5D0B7B00FB6195 /* piano.mp3 in Resources */,
 				B844950D1F5D7B49004DEC7E /* NextPageLoaderCell.xib in Resources */,
@@ -326,7 +334,7 @@
 			files = (
 				B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */,
 				B897C56A1F5D35CA003319A5 /* LogInViewController.swift in Sources */,
-				B897C5721F5D3AFA003319A5 /* ViewController.swift in Sources */,
+				B897C5721F5D3AFA003319A5 /* MainViewController.swift in Sources */,
 				B84495181F5D7BB2004DEC7E /* JTTableViewController.swift in Sources */,
 				B844951E1F5D83C6004DEC7E /* ArticleViewController.swift in Sources */,
 				B844951B1F5D7BC0004DEC7E /* FakeService.swift in Sources */,
@@ -340,7 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B86EE3481F5D0B6D00FB6195 /* ViewController.swift in Sources */,
+				B86EE3481F5D0B6D00FB6195 /* MainViewController.swift in Sources */,
 				B897C56E1F5D3686003319A5 /* AMInputView.swift in Sources */,
 				B86EE3461F5D0B6D00FB6195 /* AppDelegate.swift in Sources */,
 				B84495171F5D7BB2004DEC7E /* JTTableViewController.swift in Sources */,

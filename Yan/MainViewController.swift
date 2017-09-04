@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import AVFoundation
 
-class ViewController:  JTFullTableViewController<String> {
+class MainViewController:  JTFullTableViewController<String> {
 
     var player: AVAudioPlayer?
     var lastIndex = 0
@@ -18,7 +18,6 @@ class ViewController:  JTFullTableViewController<String> {
     override func viewDidLoad() {
         print("main VC loaded")
         super.viewDidLoad()
-        tableView?.separatorStyle = .none
         
         let synthesizer = AVSpeechSynthesizer()
         let utterance = AVSpeechUtterance(string: "Welcome to the wonderful world of Yan.")
@@ -45,6 +44,8 @@ class ViewController:  JTFullTableViewController<String> {
         // One of the many way to determine the cell for a tableView
         // The tableView is bind to the controller directly in the storyboard, no need to set the delegate and the dataSource
         self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        self.tableView?.separatorStyle = .none
         
         // Optional
         // Load nextPageLoaderCell, this view is bind to the controller directly in the nib
@@ -130,6 +131,15 @@ class ViewController:  JTFullTableViewController<String> {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = self.results[indexPath.row]
         return cell
+    }
+    
+    @objc(tableView:didSelectRowAtIndexPath:)
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let n = indexPath.row
+        let avc = ArticleViewController()
+        avc.parentVC = self
+        avc.menuIndex = n
+        self.navigationController?.pushViewController(avc, animated: true)
     }
 
 

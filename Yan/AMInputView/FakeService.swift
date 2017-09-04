@@ -11,7 +11,7 @@ import UIKit
 class FakeService {
     
     class func retrieve (offset: Int = 0, completion: @escaping ((Error?, [String]?) -> Void)) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.async() {
             let fakeData = self.fakeData()
             
             var pageSize = 10
