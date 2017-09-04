@@ -14,16 +14,15 @@ class MainViewController:  JTFullTableViewController<String> {
 
     var player: AVAudioPlayer?
     var lastIndex = 0
+    var synthesizer: AVSpeechSynthesizer?
     
     override func viewDidLoad() {
         print("main VC loaded")
         super.viewDidLoad()
         
-        let synthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: "Welcome to the wonderful world of Yan.")
-        utterance.voice = AVSpeechSynthesisVoice.init() //(language: "zh-CN")
-        synthesizer.speak(utterance)
+        self.synthesizer = AVSpeechSynthesizer()
 
+        /*
         let soundPath = Bundle.main.url(forResource: "piano", withExtension: "mp3")!
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -36,6 +35,7 @@ class MainViewController:  JTFullTableViewController<String> {
         } catch let error as NSError {
             print(error.description)
         }
+        */
         // print(FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask))
         
         // Don't display empty cells

@@ -18,16 +18,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-A1-eqn">
-                    <frame key="frameInset" minX="30" minY="83" width="307" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-A1-eqn">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="57" id="oP1-1z-pDK"/>
+                    </constraints>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QLf-d3-e0i">
-                    <frame key="frameInset" minX="30" minY="162" width="316" height="427"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QLf-d3-e0i">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -35,6 +34,15 @@
                 </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="QLf-d3-e0i" secondAttribute="trailing" constant="29" id="IVi-AE-7oB"/>
+                <constraint firstItem="aBF-A1-eqn" firstAttribute="leading" secondItem="QLf-d3-e0i" secondAttribute="leading" id="UDI-4g-yNR"/>
+                <constraint firstAttribute="bottom" secondItem="QLf-d3-e0i" secondAttribute="bottom" constant="78" id="XIM-yQ-sHj"/>
+                <constraint firstItem="QLf-d3-e0i" firstAttribute="top" secondItem="aBF-A1-eqn" secondAttribute="bottom" constant="22" id="c9X-OV-atG"/>
+                <constraint firstAttribute="trailing" secondItem="aBF-A1-eqn" secondAttribute="trailing" constant="38" id="cIZ-Ci-T1l"/>
+                <constraint firstItem="aBF-A1-eqn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="83" id="i04-Cy-XWq"/>
+                <constraint firstItem="QLf-d3-e0i" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yrI-Hd-qlk"/>
+            </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>

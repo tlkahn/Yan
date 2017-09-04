@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ArticleViewController: UIViewController {
     
@@ -27,5 +28,8 @@ class ArticleViewController: UIViewController {
         print("article VC loaded")
         self.header.text = parentVC?.results[menuIndex!]
         self.content.text = parentVC?.results[menuIndex!]
+        let utterance = AVSpeechUtterance(string: self.content.text)
+        utterance.voice = AVSpeechSynthesisVoice.init() //(language: "zh-CN")
+        self.parentVC?.synthesizer?.speak(utterance)
     }
 }
