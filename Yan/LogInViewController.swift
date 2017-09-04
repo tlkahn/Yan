@@ -91,7 +91,8 @@ class LoginViewController: UIViewController {
         
             //TODO: login by this data
             NSLog("Email:\(loginEmailInputView.textFieldView.text) Password:\(loginPasswordInputView.textFieldView.text)")
-            let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as! ViewController
+            // let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as! ViewController
+            let nextVC = ViewController()
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
     }
