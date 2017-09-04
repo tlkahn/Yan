@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uPW-wZ-Tfv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mmo-oy-MwH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Yan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainVC" id="BYZ-38-t0r" customClass="ViewController" customModule="Yan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -20,11 +20,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <accessibility key="accessibilityConfiguration" identifier="mainVC"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="594" y="70"/>
+            <point key="canvasLocation" x="1532" y="69.715142428785612"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="RBD-mf-XQ9">
@@ -97,7 +98,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="presentation" id="qJa-M0-Pyf"/>
+                                                    <action selector="loginButtonTouchUpInside:" destination="uPW-wZ-Tfv" eventType="touchUpInside" id="pOm-5F-c9u"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -270,6 +271,7 @@
                             <constraint firstItem="D9j-YZ-ufE" firstAttribute="top" secondItem="2u1-ft-CBb" secondAttribute="top" id="vsF-3b-knV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="uV7-7n-YcU"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="backImageBottomConstraint" destination="sgP-vH-vwv" id="Iic-dx-Q7P"/>
@@ -302,7 +304,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qkf-IB-hyr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-159" y="70"/>
+            <point key="canvasLocation" x="780" y="69.715142428785612"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xBP-u4-XXX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mmo-oy-MwH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sCa-Fr-9ui">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uPW-wZ-Tfv" kind="relationship" relationship="rootViewController" id="v6v-eb-7du"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iEI-Q8-g76" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-159.19999999999999" y="69.715142428785612"/>
         </scene>
     </scenes>
     <resources>

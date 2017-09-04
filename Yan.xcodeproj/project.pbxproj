@@ -29,6 +29,7 @@
 		B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C56C1F5D3686003319A5 /* AMInputView.swift */; };
 		B897C5701F5D3686003319A5 /* AMInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B897C56D1F5D3686003319A5 /* AMInputView.xib */; };
 		B897C5711F5D3686003319A5 /* AMInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B897C56D1F5D3686003319A5 /* AMInputView.xib */; };
+		B897C5721F5D3AFA003319A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3471F5D0B6D00FB6195 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +288,7 @@
 			files = (
 				B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */,
 				B897C56A1F5D35CA003319A5 /* LogInViewController.swift in Sources */,
+				B897C5721F5D3AFA003319A5 /* ViewController.swift in Sources */,
 				B83020521F5D12390014B165 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

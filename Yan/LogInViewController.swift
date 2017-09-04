@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
     //MARK: - controller
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         // set view to login mode
         toggleViewMode(animated: false)
         
@@ -91,6 +91,8 @@ class LoginViewController: UIViewController {
         
             //TODO: login by this data
             NSLog("Email:\(loginEmailInputView.textFieldView.text) Password:\(loginPasswordInputView.textFieldView.text)")
+            let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as! ViewController
+            self.navigationController?.pushViewController(nextVC, animated: true)
         }
     }
     
@@ -219,6 +221,10 @@ class LoginViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
         return true
-    }  
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
 }
 
