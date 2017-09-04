@@ -23,6 +23,12 @@
 		B86EE34D1F5D0B6D00FB6195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE34C1F5D0B6D00FB6195 /* Assets.xcassets */; };
 		B86EE3501F5D0B6D00FB6195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE34E1F5D0B6D00FB6195 /* LaunchScreen.storyboard */; };
 		B86EE3581F5D0B7B00FB6195 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B86EE3571F5D0B7B00FB6195 /* piano.mp3 */; };
+		B897C5691F5D35CA003319A5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C5681F5D35CA003319A5 /* LogInViewController.swift */; };
+		B897C56A1F5D35CA003319A5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C5681F5D35CA003319A5 /* LogInViewController.swift */; };
+		B897C56E1F5D3686003319A5 /* AMInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C56C1F5D3686003319A5 /* AMInputView.swift */; };
+		B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C56C1F5D3686003319A5 /* AMInputView.swift */; };
+		B897C5701F5D3686003319A5 /* AMInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B897C56D1F5D3686003319A5 /* AMInputView.xib */; };
+		B897C5711F5D3686003319A5 /* AMInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B897C56D1F5D3686003319A5 /* AMInputView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +83,9 @@
 		B86EE34F1F5D0B6D00FB6195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B86EE3511F5D0B6D00FB6195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B86EE3571F5D0B7B00FB6195 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
+		B897C5681F5D35CA003319A5 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		B897C56C1F5D3686003319A5 /* AMInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMInputView.swift; sourceTree = "<group>"; };
+		B897C56D1F5D3686003319A5 /* AMInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMInputView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				B86EE3571F5D0B7B00FB6195 /* piano.mp3 */,
+				B897C56B1F5D3686003319A5 /* AMInputView */,
 				B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */,
+				B897C5681F5D35CA003319A5 /* LogInViewController.swift */,
 				B86EE3471F5D0B6D00FB6195 /* ViewController.swift */,
 				B86EE3491F5D0B6D00FB6195 /* Main.storyboard */,
 				B86EE34C1F5D0B6D00FB6195 /* Assets.xcassets */,
@@ -152,6 +163,15 @@
 				B86EE3511F5D0B6D00FB6195 /* Info.plist */,
 			);
 			path = Yan;
+			sourceTree = "<group>";
+		};
+		B897C56B1F5D3686003319A5 /* AMInputView */ = {
+			isa = PBXGroup;
+			children = (
+				B897C56C1F5D3686003319A5 /* AMInputView.swift */,
+				B897C56D1F5D3686003319A5 /* AMInputView.xib */,
+			);
+			path = AMInputView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B897C5711F5D3686003319A5 /* AMInputView.xib in Resources */,
 				B83020551F5D12390014B165 /* MainInterface.storyboard in Resources */,
 				B830205F1F5D129E0014B165 /* GetURL.js in Resources */,
 			);
@@ -251,6 +272,7 @@
 			files = (
 				B86EE3501F5D0B6D00FB6195 /* LaunchScreen.storyboard in Resources */,
 				B86EE34D1F5D0B6D00FB6195 /* Assets.xcassets in Resources */,
+				B897C5701F5D3686003319A5 /* AMInputView.xib in Resources */,
 				B86EE3581F5D0B7B00FB6195 /* piano.mp3 in Resources */,
 				B86EE34B1F5D0B6D00FB6195 /* Main.storyboard in Resources */,
 			);
@@ -263,6 +285,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */,
+				B897C56A1F5D35CA003319A5 /* LogInViewController.swift in Sources */,
 				B83020521F5D12390014B165 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,7 +296,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86EE3481F5D0B6D00FB6195 /* ViewController.swift in Sources */,
+				B897C56E1F5D3686003319A5 /* AMInputView.swift in Sources */,
 				B86EE3461F5D0B6D00FB6195 /* AppDelegate.swift in Sources */,
+				B897C5691F5D35CA003319A5 /* LogInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +511,7 @@
 				B830205B1F5D12390014B165 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B86EE33D1F5D0B6D00FB6195 /* Build configuration list for PBXProject "Yan" */ = {
 			isa = XCConfigurationList;
