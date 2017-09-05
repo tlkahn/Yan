@@ -115,6 +115,9 @@
 		B897C5681F5D35CA003319A5 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		B897C56C1F5D3686003319A5 /* AMInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMInputView.swift; sourceTree = "<group>"; };
 		B897C56D1F5D3686003319A5 /* AMInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMInputView.xib; sourceTree = "<group>"; };
+		B8FC18671F5E8DDF00BE6C8A /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		B8FC26131F5E8DE600BE6C8A /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
+		B8FC26141F5E8DE600BE6C8A /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,7 @@
 		B86EE3391F5D0B6D00FB6195 = {
 			isa = PBXGroup;
 			children = (
+				B8FC18661F5E8DDF00BE6C8A /* server */,
 				B86EE3441F5D0B6D00FB6195 /* Yan */,
 				B83020501F5D12390014B165 /* YanShare */,
 				B86EE3431F5D0B6D00FB6195 /* Products */,
@@ -210,6 +214,16 @@
 				B897C56D1F5D3686003319A5 /* AMInputView.xib */,
 			);
 			path = AMInputView;
+			sourceTree = "<group>";
+		};
+		B8FC18661F5E8DDF00BE6C8A /* server */ = {
+			isa = PBXGroup;
+			children = (
+				B8FC18671F5E8DDF00BE6C8A /* index.js */,
+				B8FC26131F5E8DE600BE6C8A /* package-lock.json */,
+				B8FC26141F5E8DE600BE6C8A /* package.json */,
+			);
+			path = server;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
