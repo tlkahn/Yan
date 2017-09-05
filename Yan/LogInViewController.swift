@@ -78,6 +78,43 @@ class LoginViewController: UIViewController {
         //add keyboard notification
          NotificationCenter.default.addObserver(self, selector: #selector(keyboarFrameChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showDialog()
+    }
+    
+    private func showDialog() {
+        var alertController:UIAlertController?
+        alertController = UIAlertController(title: "Enter server address",
+                                            message: "use IP address and port",
+                                            preferredStyle: .alert)
+        
+        alertController!.addTextField(
+            configurationHandler: {(textField: UITextField!) in
+                textField.placeholder = "http://localhost:3000"
+        })
+        var enteredText: String?
+        let action = UIAlertAction(title: "Submit",
+                                   style: UIAlertActionStyle.default,
+                                   handler: {[weak self]
+                                    (paramAction:UIAlertAction!) in
+                                    if let textFields = alertController?.textFields{
+                                        let theTextFields = textFields as [UITextField]
+                                        enteredText = theTextFields[0].text
+                                    }
+                                    if enteredText!.count > 0 {
+                                         __domain__ = enteredText!
+                                    }
+                                    print(enteredText!)
+
+        })
+        
+        alertController?.addAction(action)
+        self.present(alertController!,
+                                   animated: true,
+                                   completion: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
