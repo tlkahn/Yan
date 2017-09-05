@@ -42,7 +42,7 @@ class ShareViewController: SLComposeServiceViewController {
                                     print("text: ", json["objects"][0]["text"])
                                     print("title: ", json["objects"][0]["title"])
                                     let p: Parameters = ["header":json["objects"][0]["title"], "content": json["objects"][0]["text"]]
-                                    Alamofire.request("http://localhost:3000/articles", method: .post, parameters: p).responseJSON(completionHandler: {
+                                    Alamofire.request(__domain__ + "/articles", method: .post, parameters: p).responseJSON(completionHandler: {
                                         (response: DataResponse) -> Void in
                                         print(response)
                                     })

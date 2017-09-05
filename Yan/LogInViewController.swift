@@ -17,11 +17,11 @@ enum AMLoginSignupViewMode {
 
 class LoginViewController: UIViewController {
     
-    
     let animationDuration = 0.25
     var mode:AMLoginSignupViewMode = .signup
-    var loginURL: String = "http://localhost:3000/login"
-    var signUpURL: String = "http://localhost:3000/register"
+    var domain: String?
+    var loginURL: String?
+    var signUpURL: String?
     
     //MARK: - background image constraints
     @IBOutlet weak var backImageLeftConstraint: NSLayoutConstraint!
@@ -68,7 +68,10 @@ class LoginViewController: UIViewController {
     //MARK: - controller
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.domain = __domain__
+        self.loginURL = domain! + "/login"
+        self.signUpURL = domain! + "/register"
+        
         // set view to login mode
         toggleViewMode(animated: false)
         
@@ -80,9 +83,9 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
  
-    private func verifyLogin(email: String?, password: String?, callback: @escaping (JSON) -> Void) -> Void {
-        let param: Parameters = ["username": email!, "password": password!]
-        Alamofire.request(self.loginURL, method: .post, parameters: param)
+    private func verifyLogin(email: String, password: String, callback: @escaping (JSON) -> Void) -> Void {
+        let param: Parameters = ["username": email, "password": password]
+        Alamofire.request(self.loginURL!, method: .post, parameters: param)
             .responseJSON(completionHandler: { (response: DataResponse) -> Void in
                 let json = JSON(data: response.data!)
                 if json["status"] == "success" {
@@ -105,31 +108,45 @@ class LoginViewController: UIViewController {
             let email = loginEmailInputView.textFieldView.text
             let password = loginPasswordInputView.textFieldView.text
             
-            verifyLogin(email: email, password: password) { json in
+            verifyLogin(email: email!, password: password!) { json in
                 print("token", json["token"])
                 let token = json["token"].string
                 let userId = json["userId"].string
-                UserDefaults.standard.setValue(token!, forKey: "token")
-                UserDefaults.standard.setValue(userId, forKey: "userId")
                 //save token and userId to userDefault
-                
-                let nextVC = MainViewController()
-                let navVC = UINavigationController.init(rootViewController: nextVC)
-                navVC.viewControllers = [nextVC]
-                nextVC.navVC = navVC
-                navVC.navigationBar.topItem?.title = "Yan"
-                
-                let tab = UITabBarController()
-                tab.viewControllers = [navVC]
-                
-                self.present(tab, animated: true, completion: nil)
+                self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
+                self.presentNextVC()
             }
         }
     }
     
+    private func updateUserDefaultsWithCredentials(token: String, userId: String) {
+        UserDefaults.standard.setValue(token, forKey: "token")
+        UserDefaults.standard.setValue(userId, forKey: "userId")
+    }
+    
+    private func presentNextVC() {
+        let nextVC = MainViewController()
+        let navVC = UINavigationController.init(rootViewController: nextVC)
+        navVC.viewControllers = [nextVC]
+        nextVC.navVC = navVC
+        navVC.navigationBar.topItem?.title = "Yan"
+        
+        let tab = UITabBarController()
+        let connectMoreVC = ConnectionViewController()
+        tab.viewControllers = [navVC, connectMoreVC]
+        
+        tab.tabBar.items?[0].title = "Collections"
+        tab.tabBar.items?[1].title = "Connections"
+        tab.tabBar.items?[0].image = UIImage(named: "Unread")
+        tab.tabBar.items?[1].image = UIImage(named: "More")
+        
+        self.present(tab, animated: true, completion: nil)
+        
+    }
+    
     private func submitSignUp(email: String, password: String, callback: @escaping (JSON) -> Void) {
         let param: Parameters = ["username": email, "password": password]
-        Alamofire.request(self.signUpURL, method: .post, parameters: param)
+        Alamofire.request(self.signUpURL!, method: .post, parameters: param)
             .responseJSON(completionHandler: { (response: DataResponse) -> Void in
                 let json = JSON(data: response.data!)
                 if json["status"] == "success" {
@@ -165,18 +182,13 @@ class LoginViewController: UIViewController {
                 print("token", json["token"])
                 let token = json["token"].string
                 let userId = json["userId"].string
-                UserDefaults.standard.setValue(token!, forKey: "token")
-                UserDefaults.standard.setValue(userId, forKey: "userId")
-                //save token and userId to userDefault
-                let nextVC = MainViewController()
-                self.present(nextVC, animated: true, completion: nil)                
+                self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
+                self.presentNextVC()
             }
             
         }
     }
-    
-    
-    
+
     //MARK: - toggle view
     func toggleViewMode(animated:Bool){
     

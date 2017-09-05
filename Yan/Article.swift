@@ -15,7 +15,7 @@ class Article {
     var token: String = ""
     
     init(user_id: Int) {
-        self.root = "http://localhost:3000"
+        self.root = __domain__
         if let tokenData = UserDefaults.standard.value(forKey: "token") as? NSData {
             self.token = NSKeyedUnarchiver.unarchiveObject(with: tokenData as Data) as! String
         }
@@ -42,7 +42,7 @@ class Article {
 
                     var pageSize = 10
                     
-                    if((offset + pageSize) >= data.count) {
+                    if((offset + pageSize) >= data.count && pageSize > 0) {
                         pageSize = data.count - offset
                     }
                     
