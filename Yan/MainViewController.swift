@@ -15,8 +15,7 @@ class MainViewController:  JTFullTableViewController<FetchResult> {
     var player: AVAudioPlayer?
     var lastIndex = 0
     var synthesizer: AVSpeechSynthesizer?
-    var userId = 0 //TODO: Fix this after auth done
-    let articles = Article(user_id: 0) //TODO: Fix this after auth done
+    var articles = Article(user_id: 0) //TODO: Fix this after auth done
     
     override func viewDidLoad() {
         print("main VC loaded")

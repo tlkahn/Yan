@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 enum AMLoginSignupViewMode {
     case login
@@ -18,7 +20,7 @@ class LoginViewController: UIViewController {
     
     let animationDuration = 0.25
     var mode:AMLoginSignupViewMode = .signup
-    
+    var loginURL: String = "http://localhost:3000/login"
     
     //MARK: - background image constraints
     @IBOutlet weak var backImageLeftConstraint: NSLayoutConstraint!
@@ -61,9 +63,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signupEmailInputView: AMInputView!
     @IBOutlet weak var signupPasswordInputView: AMInputView!
     @IBOutlet weak var signupPasswordConfirmInputView: AMInputView!
-    
-    
-    
+
     //MARK: - controller
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,19 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
  
-    
+    private func verifyLogin(email: String?, password: String?, callback: @escaping (JSON) -> Void) -> Void {
+        let param: Parameters = ["username": email!, "password": password!]
+        Alamofire.request(self.loginURL, method: .post, parameters: param)
+            .responseJSON(completionHandler: { (response: DataResponse) -> Void in
+                let json = JSON(data: response.data!)
+                if json["status"] == "success" {
+                    callback(json)
+                }
+                else {
+                    print("bad login")
+                }
+        })
+    }
     
     //MARK: - button actions
     @IBAction func loginButtonTouchUpInside(_ sender: AnyObject) {
@@ -88,11 +100,21 @@ class LoginViewController: UIViewController {
              toggleViewMode(animated: true)
         
         }else{
-        
-            //TODO: login by this data
             NSLog("Email:\(loginEmailInputView.textFieldView.text) Password:\(loginPasswordInputView.textFieldView.text)")
-            let nextVC = MainViewController()
-            self.navigationController?.pushViewController(nextVC, animated: true)
+            let email = loginEmailInputView.textFieldView.text
+            let password = loginPasswordInputView.textFieldView.text
+            
+            verifyLogin(email: email, password: password) { json in
+                print("token", json["token"])
+                let token = json["token"].string
+                let userId = json["userId"].string
+                UserDefaults.standard.setValue(token!, forKey: "token")
+                UserDefaults.standard.setValue(userId, forKey: "userId")
+                //save token and userId to userDefault
+                let nextVC = MainViewController()
+                self.navigationController?.pushViewController(nextVC, animated: true)
+                
+            }
         }
     }
     
