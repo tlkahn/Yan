@@ -70,10 +70,15 @@ app.post('/register', (req, res, next) => {
         else {
             passport.authenticate('local')(req, res, () => {
                 console.log("register success!")
-                 res.send({
+                let result = {
                     status: 'success',
-                    message: 'register success'
-                 })
+                    message: 'register success',
+                    userId: req.user.id,
+                    username: req.user.username
+                }
+                let token = jwt.encode(result, secret);
+                result['token'] = token;
+                res.jsonp(result)
             });
         }
     });

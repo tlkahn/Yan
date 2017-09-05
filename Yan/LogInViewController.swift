@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     let animationDuration = 0.25
     var mode:AMLoginSignupViewMode = .signup
     var loginURL: String = "http://localhost:3000/login"
+    var signUpURL: String = "http://localhost:3000/register"
     
     //MARK: - background image constraints
     @IBOutlet weak var backImageLeftConstraint: NSLayoutConstraint!
@@ -118,6 +119,22 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func submitSignUp(email: String, password: String, callback: @escaping (JSON) -> Void) {
+        let param: Parameters = ["username": email, "password": password]
+        Alamofire.request(self.signUpURL, method: .post, parameters: param)
+            .responseJSON(completionHandler: { (response: DataResponse) -> Void in
+                let json = JSON(data: response.data!)
+                if json["status"] == "success" {
+                    callback(json)
+                }
+                else {
+                    print("bad sign up")
+                    // TODO:
+                }
+            })
+        
+    }
+    
     @IBAction func signupButtonTouchUpInside(_ sender: AnyObject) {
    
         if mode == .login {
@@ -126,6 +143,28 @@ class LoginViewController: UIViewController {
             
             //TODO: signup by this data
             NSLog("Email:\(signupEmailInputView.textFieldView.text) Password:\(signupPasswordInputView.textFieldView.text), PasswordConfirm:\(signupPasswordConfirmInputView.textFieldView.text)")
+            
+            let email = signupEmailInputView.textFieldView.text
+            let password = signupPasswordInputView.textFieldView.text
+            let passwordConfirmation = signupPasswordConfirmInputView.textFieldView.text
+            
+            if password != passwordConfirmation {
+                print("password does not match with confirmation")
+                // TODO
+            }
+            
+            submitSignUp(email: email!, password: password!) { json in
+                print("token", json["token"])
+                let token = json["token"].string
+                let userId = json["userId"].string
+                UserDefaults.standard.setValue(token!, forKey: "token")
+                UserDefaults.standard.setValue(userId, forKey: "userId")
+                //save token and userId to userDefault
+                let nextVC = MainViewController()
+                self.navigationController?.pushViewController(nextVC, animated: true)
+                
+            }
+            
         }
     }
     
