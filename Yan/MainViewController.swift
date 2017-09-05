@@ -10,11 +10,13 @@ import UIKit
 import Foundation
 import AVFoundation
 
-class MainViewController:  JTFullTableViewController<String> {
+class MainViewController:  JTFullTableViewController<FetchResult> {
 
     var player: AVAudioPlayer?
     var lastIndex = 0
     var synthesizer: AVSpeechSynthesizer?
+    var userId = 0 //TODO: Fix this after auth done
+    let articles = Article(user_id: 0) //TODO: Fix this after auth done
     
     override func viewDidLoad() {
         print("main VC loaded")
@@ -98,12 +100,12 @@ class MainViewController:  JTFullTableViewController<String> {
         
         let lastRequestId = self.lastRequestId
         
-        FakeService.retrieve { (error, results) in
+        articles.retrieve { (error, results) in
             if let error = error {
                 self.didFailedToFetchResults(error: error, lastRequestId: lastRequestId)
             }
             else if let results = results {
-                self.didFetchResults(results: results, lastRequestId: lastRequestId) {
+                self.didFetchResults(results: results as! [FetchResult], lastRequestId: lastRequestId) {
                     self.lastIndex += results.count
                 }
             }
@@ -115,12 +117,12 @@ class MainViewController:  JTFullTableViewController<String> {
         
         let lastRequestId = self.lastRequestId
         
-        FakeService.retrieve(offset: lastIndex) { (error, results) in
+        articles.retrieve(offset: lastIndex) { (error, results) in
             if let error = error {
                 self.didFailedToFetchResults(error: error, lastRequestId: lastRequestId)
             }
             else if let results = results {
-                self.didFetchNextResults(results: results, lastRequestId: lastRequestId) {
+                self.didFetchNextResults(results: results as! [FetchResult], lastRequestId: lastRequestId) {
                     self.lastIndex += results.count
                 }
             }
@@ -129,7 +131,7 @@ class MainViewController:  JTFullTableViewController<String> {
     
     override func jt_tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = self.results[indexPath.row]
+        cell.textLabel?.text = self.results[indexPath.row].header
         return cell
     }
     

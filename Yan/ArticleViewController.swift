@@ -26,10 +26,23 @@ class ArticleViewController: UIViewController {
     
     override func viewDidLoad() {
         print("article VC loaded")
-        self.header.text = parentVC?.results[menuIndex!]
-        self.content.text = parentVC?.results[menuIndex!]
+        self.content.isEditable = false
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.header.text = parentVC?.results[menuIndex!].header
+        self.content.text = parentVC?.results[menuIndex!].content
         let utterance = AVSpeechUtterance(string: self.content.text)
         utterance.voice = AVSpeechSynthesisVoice.init() //(language: "zh-CN")
         self.parentVC?.synthesizer?.speak(utterance)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.content.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if (self.parentVC?.synthesizer?.isSpeaking)! {
+            self.parentVC?.synthesizer?.stopSpeaking(at: .word)
+        }
+        super.viewWillDisappear(animated)
     }
 }

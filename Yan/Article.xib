@@ -35,11 +35,11 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="QLf-d3-e0i" secondAttribute="trailing" constant="29" id="IVi-AE-7oB"/>
+                <constraint firstAttribute="trailing" secondItem="QLf-d3-e0i" secondAttribute="trailing" id="IVi-AE-7oB"/>
                 <constraint firstItem="aBF-A1-eqn" firstAttribute="leading" secondItem="QLf-d3-e0i" secondAttribute="leading" id="UDI-4g-yNR"/>
-                <constraint firstAttribute="bottom" secondItem="QLf-d3-e0i" secondAttribute="bottom" constant="78" id="XIM-yQ-sHj"/>
+                <constraint firstAttribute="bottom" secondItem="QLf-d3-e0i" secondAttribute="bottom" constant="20" id="XIM-yQ-sHj"/>
                 <constraint firstItem="QLf-d3-e0i" firstAttribute="top" secondItem="aBF-A1-eqn" secondAttribute="bottom" constant="22" id="c9X-OV-atG"/>
-                <constraint firstAttribute="trailing" secondItem="aBF-A1-eqn" secondAttribute="trailing" constant="38" id="cIZ-Ci-T1l"/>
+                <constraint firstAttribute="trailing" secondItem="aBF-A1-eqn" secondAttribute="trailing" id="cIZ-Ci-T1l"/>
                 <constraint firstItem="aBF-A1-eqn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="83" id="i04-Cy-XWq"/>
                 <constraint firstItem="QLf-d3-e0i" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yrI-Hd-qlk"/>
             </constraints>
