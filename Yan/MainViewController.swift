@@ -16,13 +16,14 @@ class MainViewController:  JTFullTableViewController<FetchResult> {
     var lastIndex = 0
     var synthesizer: AVSpeechSynthesizer?
     var articles = Article(user_id: 0) //TODO: Fix this after auth done
+    var navVC: UINavigationController?
     
     override func viewDidLoad() {
         print("main VC loaded")
         super.viewDidLoad()
         
         self.synthesizer = AVSpeechSynthesizer()
-
+        
         /*
         let soundPath = Bundle.main.url(forResource: "piano", withExtension: "mp3")!
         do {
@@ -59,6 +60,7 @@ class MainViewController:  JTFullTableViewController<FetchResult> {
         // Optional
         // Load noResultsLoadingView, this view is bind to the controller directly in the nib
         Bundle.main.loadNibNamed("NoResultsLoadingView", owner: self, options: nil)
+        
     }
     
     /*
@@ -140,7 +142,7 @@ class MainViewController:  JTFullTableViewController<FetchResult> {
         let avc = ArticleViewController()
         avc.parentVC = self
         avc.menuIndex = n
-        self.navigationController?.pushViewController(avc, animated: true)
+        self.navVC?.pushViewController(avc, animated: true)
     }
 
 

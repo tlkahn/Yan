@@ -112,9 +112,13 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.setValue(token!, forKey: "token")
                 UserDefaults.standard.setValue(userId, forKey: "userId")
                 //save token and userId to userDefault
-                let nextVC = MainViewController()
-                self.navigationController?.pushViewController(nextVC, animated: true)
                 
+                let nextVC = MainViewController()
+                let navVC = UINavigationController.init(rootViewController: nextVC)
+                navVC.viewControllers = [nextVC]
+                nextVC.navVC = navVC
+                
+                self.present(navVC, animated: true, completion: nil)
             }
         }
     }
@@ -161,8 +165,7 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.setValue(userId, forKey: "userId")
                 //save token and userId to userDefault
                 let nextVC = MainViewController()
-                self.navigationController?.pushViewController(nextVC, animated: true)
-                
+                self.present(nextVC, animated: true, completion: nil)                
             }
             
         }
@@ -285,7 +288,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        
     }
 }
 
