@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 open class JTTableViewController<T>: UIViewController {
     
@@ -285,7 +286,7 @@ open class JTTableViewController<T>: UIViewController {
     }
     
     open func jt_tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        return SwipeTableViewCell()
     }
     
 }

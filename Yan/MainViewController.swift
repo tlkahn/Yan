@@ -1,16 +1,9 @@
-//
-//  ViewController.swift
-//  Yan
-//
-//  Created by toeinriver on 9/4/17.
-//  Copyright © 2017 toeinriver. All rights reserved.
-//
-
 import UIKit
 import Foundation
 import AVFoundation
+import SwipeCellKit
 
-class MainViewController:  JTFullTableViewController<FetchResult> {
+class MainViewController:  JTFullTableViewController<FetchResult>, SwipeTableViewCellDelegate {
 
     var player: AVAudioPlayer?
     var lastIndex = 0
@@ -45,7 +38,7 @@ class MainViewController:  JTFullTableViewController<FetchResult> {
         
         // One of the many way to determine the cell for a tableView
         // The tableView is bind to the controller directly in the storyboard, no need to set the delegate and the dataSource
-        self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView?.register(SwipeTableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.tableView?.separatorStyle = .none
         
@@ -131,9 +124,28 @@ class MainViewController:  JTFullTableViewController<FetchResult> {
     }
     
     override func jt_tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SwipeTableViewCell
         cell.textLabel?.text = self.results[indexPath.row].header
+        cell.delegate = self
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+        }
+        
+        let flagAction = SwipeAction(style: .default, title: "Flag") { action, indexPath in
+            // handle action by updating model with deletion
+        }
+        
+        let moreAction = SwipeAction(style: .default, title: "More") { action, indexPath in
+            // handle action by updating model with deletion
+        }
+        
+        return [deleteAction, flagAction, moreAction]
     }
     
     @objc(tableView:didSelectRowAtIndexPath:)

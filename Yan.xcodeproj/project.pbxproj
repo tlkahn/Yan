@@ -49,6 +49,8 @@
 		B897C5701F5D3686003319A5 /* AMInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B897C56D1F5D3686003319A5 /* AMInputView.xib */; };
 		B897C5711F5D3686003319A5 /* AMInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B897C56D1F5D3686003319A5 /* AMInputView.xib */; };
 		B897C5721F5D3AFA003319A5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3471F5D0B6D00FB6195 /* MainViewController.swift */; };
+		B8B1B8351F5EF55800A8C941 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */; };
+		B8B1B8361F5EF58F00A8C941 /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B8B1B8361F5EF58F00A8C941 /* SwipeCellKit.framework in Embed Frameworks */,
 				B830206B1F5D14490014B165 /* SwiftyJSON.framework in Embed Frameworks */,
 				B83020691F5D14490014B165 /* Alamofire.framework in Embed Frameworks */,
 			);
@@ -115,6 +118,7 @@
 		B897C5681F5D35CA003319A5 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		B897C56C1F5D3686003319A5 /* AMInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMInputView.swift; sourceTree = "<group>"; };
 		B897C56D1F5D3686003319A5 /* AMInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMInputView.xib; sourceTree = "<group>"; };
+		B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		B8FC18671F5E8DDF00BE6C8A /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
 		B8FC26131F5E8DE600BE6C8A /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
 		B8FC26141F5E8DE600BE6C8A /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8B1B8351F5EF55800A8C941 /* SwipeCellKit.framework in Frameworks */,
 				B830206A1F5D14490014B165 /* SwiftyJSON.framework in Frameworks */,
 				B83020681F5D14490014B165 /* Alamofire.framework in Frameworks */,
 			);
@@ -156,6 +161,7 @@
 		B83020631F5D143C0014B165 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */,
 				B83020641F5D143C0014B165 /* Alamofire.framework */,
 				B83020651F5D143C0014B165 /* SwiftyJSON.framework */,
 			);
