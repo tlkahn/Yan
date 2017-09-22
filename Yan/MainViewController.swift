@@ -2,13 +2,14 @@ import UIKit
 import Foundation
 import AVFoundation
 import SwipeCellKit
+import CoreData
 
-class MainViewController:  JTFullTableViewController<FetchResult>, SwipeTableViewCellDelegate {
+class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTableViewCellDelegate {
 
     var player: AVAudioPlayer?
     var lastIndex = 0
     var synthesizer: AVSpeechSynthesizer?
-    var articles = Article(user_id: 0) //TODO: Fix this after auth done
+    var articles = ArticleManager(user_id: 0) //TODO: Fix this after auth done
     var navVC: UINavigationController?
     
     override func viewDidLoad() {
@@ -99,7 +100,7 @@ class MainViewController:  JTFullTableViewController<FetchResult>, SwipeTableVie
                 self.didFailedToFetchResults(error: error, lastRequestId: lastRequestId)
             }
             else if let results = results {
-                self.didFetchResults(results: results as! [FetchResult], lastRequestId: lastRequestId) {
+                self.didFetchResults(results: results as! [NSManagedObject], lastRequestId: lastRequestId) {
                     self.lastIndex += results.count
                 }
             }
@@ -116,7 +117,7 @@ class MainViewController:  JTFullTableViewController<FetchResult>, SwipeTableVie
                 self.didFailedToFetchResults(error: error, lastRequestId: lastRequestId)
             }
             else if let results = results {
-                self.didFetchNextResults(results: results as! [FetchResult], lastRequestId: lastRequestId) {
+                self.didFetchNextResults(results: results as! [NSManagedObject], lastRequestId: lastRequestId) {
                     self.lastIndex += results.count
                 }
             }
@@ -125,7 +126,7 @@ class MainViewController:  JTFullTableViewController<FetchResult>, SwipeTableVie
     
     override func jt_tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SwipeTableViewCell
-        cell.textLabel?.text = self.results[indexPath.row].header
+        cell.textLabel?.text = self.results[indexPath.row].value(forKey: "header") as? String
         cell.delegate = self
         return cell
     }

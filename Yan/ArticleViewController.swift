@@ -28,8 +28,8 @@ class ArticleViewController: UIViewController {
         print("article VC loaded")
         self.content.isEditable = false
         self.automaticallyAdjustsScrollViewInsets = false
-        self.header.text = parentVC?.results[menuIndex!].header
-        self.content.text = parentVC?.results[menuIndex!].content
+        self.header.text = parentVC?.results[menuIndex!].value(forKey: "header") as? String
+        self.content.text = parentVC?.results[menuIndex!].value(forKey: "content") as? String
         let utterance = AVSpeechUtterance(string: self.content.text)
         utterance.voice = AVSpeechSynthesisVoice.init() //(language: "zh-CN")
         self.parentVC?.synthesizer?.speak(utterance)
