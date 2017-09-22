@@ -657,7 +657,6 @@
                     <connections>
                         <outlet property="emailTextField" destination="6VI-JA-4Ct" id="adY-56-14t"/>
                         <outlet property="hostnameTextField" destination="hLn-dm-kTm" id="xmo-QY-ere"/>
-                        <outlet property="navItem" destination="XJj-CQ-w9v" id="sRO-x6-MSL"/>
                         <outlet property="passwordTextField" destination="pjx-Em-C8L" id="jGu-x0-46X"/>
                         <outlet property="portTextField" destination="DRW-cj-Hbn" id="er5-xa-F1g"/>
                     </connections>

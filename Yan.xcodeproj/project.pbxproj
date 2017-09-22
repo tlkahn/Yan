@@ -41,11 +41,9 @@
 		B885BFBD1F751C1800260A4B /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */; };
 		B885BFBE1F751C1B00260A4B /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFBB1F751BE600260A4B /* LoginTableViewController.swift */; };
 		B885BFC01F751C7D00260A4B /* MailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFBF1F751C7800260A4B /* MailsTableViewController.swift */; };
+		B885BFE01F75673D00260A4B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFDF1F75673D00260A4B /* CFNetwork.framework */; };
+		B885BFE21F75674400260A4B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFE11F75674400260A4B /* Security.framework */; };
 		B89353281F74853600C88490 /* Article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B89353261F74853600C88490 /* Article.xcdatamodeld */; };
-		B893532B1F748EDF00C88490 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89353291F748EDF00C88490 /* Article+CoreDataClass.swift */; };
-		B893532C1F748EDF00C88490 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89353291F748EDF00C88490 /* Article+CoreDataClass.swift */; };
-		B893532D1F748EDF00C88490 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893532A1F748EDF00C88490 /* Article+CoreDataProperties.swift */; };
-		B893532E1F748EDF00C88490 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893532A1F748EDF00C88490 /* Article+CoreDataProperties.swift */; };
 		B897C5691F5D35CA003319A5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C5681F5D35CA003319A5 /* LogInViewController.swift */; };
 		B897C56E1F5D3686003319A5 /* AMInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C56C1F5D3686003319A5 /* AMInputView.swift */; };
 		B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897C56C1F5D3686003319A5 /* AMInputView.swift */; };
@@ -134,10 +132,12 @@
 		B885BFBA1F75192300260A4B /* AddAccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddAccountTableViewController.swift; path = Carthage/Checkouts/Postal/PostalDemo/PostalDemo/AddAccountTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		B885BFBB1F751BE600260A4B /* LoginTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginTableViewController.swift; path = Carthage/Checkouts/Postal/PostalDemo/PostalDemo/LoginTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		B885BFBF1F751C7800260A4B /* MailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailsTableViewController.swift; sourceTree = "<group>"; };
+		B885BFDF1F75673D00260A4B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B885BFE11F75674400260A4B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B885BFE51F7567FF00260A4B /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B885BFE61F7567FF00260A4B /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B89353041F747C1C00C88490 /* Yan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yan.entitlements; sourceTree = "<group>"; };
 		B89353271F74853600C88490 /* Article.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Article.xcdatamodel; sourceTree = "<group>"; };
-		B89353291F748EDF00C88490 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B893532A1F748EDF00C88490 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B897C5681F5D35CA003319A5 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		B897C56C1F5D3686003319A5 /* AMInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMInputView.swift; sourceTree = "<group>"; };
 		B897C56D1F5D3686003319A5 /* AMInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMInputView.xib; sourceTree = "<group>"; };
@@ -164,6 +164,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B885BFE21F75674400260A4B /* Security.framework in Frameworks */,
+				B885BFE01F75673D00260A4B /* CFNetwork.framework in Frameworks */,
 				B8AB76F71F5F20D400A57D34 /* SwipeCellKit.framework in Frameworks */,
 				B8AB76F91F5F20D400A57D34 /* Alamofire.framework in Frameworks */,
 				B885BFB71F750C2300260A4B /* Result.framework in Frameworks */,
@@ -189,6 +191,8 @@
 		B83020631F5D143C0014B165 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B885BFE11F75674400260A4B /* Security.framework */,
+				B885BFDF1F75673D00260A4B /* CFNetwork.framework */,
 				B885BFB41F750C0B00260A4B /* Postal.framework */,
 				B885BFB31F750C0B00260A4B /* Result.framework */,
 				B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */,
@@ -201,8 +205,6 @@
 		B86EE3391F5D0B6D00FB6195 = {
 			isa = PBXGroup;
 			children = (
-				B89353291F748EDF00C88490 /* Article+CoreDataClass.swift */,
-				B893532A1F748EDF00C88490 /* Article+CoreDataProperties.swift */,
 				B8FC18661F5E8DDF00BE6C8A /* server */,
 				B86EE3441F5D0B6D00FB6195 /* Yan */,
 				B83020501F5D12390014B165 /* YanShare */,
@@ -223,6 +225,8 @@
 		B86EE3441F5D0B6D00FB6195 /* Yan */ = {
 			isa = PBXGroup;
 			children = (
+				B885BFE51F7567FF00260A4B /* Article+CoreDataClass.swift */,
+				B885BFE61F7567FF00260A4B /* Article+CoreDataProperties.swift */,
 				B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */,
 				B885BFBA1F75192300260A4B /* AddAccountTableViewController.swift */,
 				B885BFBB1F751BE600260A4B /* LoginTableViewController.swift */,
@@ -399,8 +403,6 @@
 				B8AB76FE1F5F270F00A57D34 /* AppDelegate.swift in Sources */,
 				B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */,
 				B8983EA21F5F09D000DFEE87 /* Connection.swift in Sources */,
-				B893532C1F748EDF00C88490 /* Article+CoreDataClass.swift in Sources */,
-				B893532E1F748EDF00C88490 /* Article+CoreDataProperties.swift in Sources */,
 				B84495181F5D7BB2004DEC7E /* JTTableViewController.swift in Sources */,
 				B844951B1F5D7BC0004DEC7E /* FakeService.swift in Sources */,
 				B83020521F5D12390014B165 /* ShareViewController.swift in Sources */,
@@ -419,9 +421,7 @@
 				B897C56E1F5D3686003319A5 /* AMInputView.swift in Sources */,
 				B885BFBD1F751C1800260A4B /* UIViewController+Helpers.swift in Sources */,
 				B8B1B8381F5EFD2500A8C941 /* ConnectionViewController.swift in Sources */,
-				B893532B1F748EDF00C88490 /* Article+CoreDataClass.swift in Sources */,
 				B86EE3461F5D0B6D00FB6195 /* AppDelegate.swift in Sources */,
-				B893532D1F748EDF00C88490 /* Article+CoreDataProperties.swift in Sources */,
 				B84495171F5D7BB2004DEC7E /* JTTableViewController.swift in Sources */,
 				B844951D1F5D83C6004DEC7E /* ArticleViewController.swift in Sources */,
 				B844951A1F5D7BC0004DEC7E /* FakeService.swift in Sources */,
@@ -608,8 +608,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Yan";
 				INFOPLIST_FILE = Yan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = ApolloMillennium.Yan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -628,8 +630,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Yan";
 				INFOPLIST_FILE = Yan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = ApolloMillennium.Yan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

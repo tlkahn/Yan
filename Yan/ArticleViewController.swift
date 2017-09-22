@@ -14,7 +14,8 @@ class ArticleViewController: UIViewController {
     @IBOutlet var header: UILabel!
     @IBOutlet var content: UITextView!
     var currentArticle: FetchArticleResult?
-    var parentVC: MainViewController?
+    var parentVC: UIViewController?
+    var synthesizer: AVSpeechSynthesizer?
     
     required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
@@ -33,7 +34,8 @@ class ArticleViewController: UIViewController {
         
         let utterance = AVSpeechUtterance(string: (self.content?.text)!)
         utterance.voice = AVSpeechSynthesisVoice.init() //(language: "zh-CN")
-        self.parentVC?.synthesizer?.speak(utterance)
+        self.synthesizer = AVSpeechSynthesizer()
+        self.synthesizer?.speak(utterance)
         
     }
     
@@ -42,8 +44,8 @@ class ArticleViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if (self.parentVC?.synthesizer?.isSpeaking)! {
-            self.parentVC?.synthesizer?.stopSpeaking(at: .word)
+        if (self.synthesizer?.isSpeaking)! {
+            self.synthesizer?.stopSpeaking(at: .word)
         }
         super.viewWillDisappear(animated)
     }

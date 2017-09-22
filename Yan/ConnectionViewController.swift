@@ -49,9 +49,9 @@ class ConnectionViewController: UIViewController, UITableViewDelegate, UITableVi
             let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let nextVC = mainStoryboard.instantiateViewController(withIdentifier: "AddAccountVC") as! AddAccountTableViewController
             let navVC = UINavigationController.init(rootViewController: nextVC)
+            nextVC.navVC = navVC
             navVC.viewControllers = [nextVC]
             navVC.navigationBar.topItem?.title = "Connect to Mail"
-            nextVC.navVC = navVC
             self.present(navVC, animated: true, completion: nil)
             
         default:

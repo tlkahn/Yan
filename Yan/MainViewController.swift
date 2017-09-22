@@ -8,7 +8,6 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
 
     var player: AVAudioPlayer?
     var lastIndex = 0
-    var synthesizer: AVSpeechSynthesizer?
     var articles = ArticleManager(user_id: 0) //TODO: Fix this after auth done
     var navVC: UINavigationController?
     var allResults: [NSManagedObject?] = []
@@ -16,8 +15,6 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
     override func viewDidLoad() {
         print("main VC loaded")
         super.viewDidLoad()
-        
-        self.synthesizer = AVSpeechSynthesizer()
         
         /*
         let soundPath = Bundle.main.url(forResource: "piano", withExtension: "mp3")!

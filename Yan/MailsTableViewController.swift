@@ -29,9 +29,8 @@ extension MailsTableViewController {
         postal.connect(timeout: Postal.defaultTimeout, completion: { [weak self] result in
             switch result {
             case .success: // Fetch 50 last mails of the INBOX
-                self?.postal.fetchLast("INBOX", last: 50, flags: [ .fullHeaders ], onMessage: { message in
+                self?.postal.fetchLast("INBOX", last: 50, flags: [ .fullHeaders, .body ], onMessage: { message in
                     self?.messages.insert(message, at: 0)
-                    
                     }, onComplete: { error in
                         if let error = error {
                             self?.showAlertError("Fetch error", message: (error as NSError).localizedDescription)
@@ -64,6 +63,29 @@ extension MailsTableViewController {
         cell.detailTextLabel?.text = "UID: #\(message.uid)"
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let avc = mainStoryboard.instantiateViewController(withIdentifier: "ArticleVC") as! ArticleViewController
+        avc.parentVC = self
+        let currentArticle = FetchArticleResult()
+        currentArticle.header = (messages[indexPath.row].header?.subject)!
+//        currentArticle.content = (messages[indexPath.row].body?.description)!
+        self.postal.fetchMessages("INBOX", uids: [Int(messages[indexPath.row].uid)], flags: [.body], onMessage: {
+            message in
+                message.body?.allParts.flatMap({p in
+                    let dataString = String(data:(p.data?.decodedData)!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue)) as! String
+                    var str = dataString.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+                    str = str.replacingOccurrences(of: "[\n\r\"\']", with: " ", options: String.CompareOptions.regularExpression, range: nil)
+                    str = str.replacingOccurrences(of: "([\\.\\#].+)(\\{[^}]+\\})", with: " ", options: String.CompareOptions.regularExpression, range: nil)
+                    currentArticle.content += str
+                    return str
+                })
+        }, onComplete: {_ in
+            avc.currentArticle = currentArticle
+            self.navVC?.pushViewController(avc, animated: true)
+        })
     }
 }
 
