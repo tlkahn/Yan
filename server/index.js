@@ -6,6 +6,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var clc = require('cli-color');
+var ObjectId = require('mongodb').ObjectID;
 
 const jwt = require('jwt-simple');
 const secret = process.env.secret;
@@ -92,6 +93,7 @@ app.post('/login', passport.authenticate('local'), (req, res, next) => {
         userId: req.user.id,
         username: req.user.username
     }
+    console.log("secret: ", secret)
     let token = jwt.encode(result, secret);
     result['token'] = token;
     res.jsonp(result);
@@ -108,20 +110,29 @@ app.get('/', function(req, res) {
 
 app.get('/users/:user_id/articles', function(req, res) {
 
-    var findDocuments = function(db, userId, callback) {
+    var findDocuments = function(db, userId, topArticleId, callback) {
         var collection = db.collection('articles');
-        collection.find({userId: userId}).toArray(function(err, docs) {
+        var oid = new ObjectId(topArticleId);
+        collection.find({userId: userId, _id: {
+            $gt: oid
+        }}).sort({
+            _id: -1
+        }).toArray(function(err, docs) {
             callback(docs);
         });
     }
 
     let token = req.query.token
+    let topArticleId = req.query.topArticleId
+    if (topArticleId.length == 0) {
+        topArticleId = 0
+    }
 
     if (typeof token !== 'undefined' && token) {
         let decodedObj = jwt.decode(token, secret);
         let userId = decodedObj.userId
         MongoClient.connect(url, function(err, db) {
-            findDocuments(db, userId, function(docs) {
+            findDocuments(db, userId, topArticleId, function(docs) {
                 res.jsonp(docs)
             });
         });

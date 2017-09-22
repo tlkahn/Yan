@@ -11,6 +11,7 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
     var synthesizer: AVSpeechSynthesizer?
     var articles = ArticleManager(user_id: 0) //TODO: Fix this after auth done
     var navVC: UINavigationController?
+    var allResults: [NSManagedObject?] = []
     
     override func viewDidLoad() {
         print("main VC loaded")
@@ -100,7 +101,12 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
                 self.didFailedToFetchResults(error: error, lastRequestId: lastRequestId)
             }
             else if let results = results {
-                self.didFetchResults(results: results as! [NSManagedObject], lastRequestId: lastRequestId) {
+                for r in results {
+                    if let rValue = r {
+                        self.allResults.append(rValue)
+                    }
+                }
+                self.didFetchResults(results: self.allResults as! [NSManagedObject], lastRequestId: lastRequestId) {
                     self.lastIndex += results.count
                 }
             }

@@ -53,6 +53,7 @@ class ArticleManager {
     var token: String = ""
     var managedContext =
         (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var topArticleId = ""
     
     init(user_id: Int) {
         self.root = __domain__
@@ -81,46 +82,53 @@ class ArticleManager {
                 self.fetchRemote() {
                     (response: DataResponse) in
                     let json = JSON(data: response.data!)
-                    for (_, subJson) in json {
-                        let fetchResult = FetchResult()
-                        fetchResult.header = subJson["header"].string!
-                        fetchResult.content = subJson["content"].string!
-                        data.append(fetchResult)
-                    }
-                    
-                    var pageSize = 10
-                    
-                    if((offset + pageSize) >= data.count && pageSize > 0) {
-                        pageSize = data.count - offset
-                    }
-                    
-                    let entity =
-                        NSEntityDescription.entity(forEntityName: "Article",
-                                                   in: self.managedContext)!
-                    
-                    //                var results: [FetchResult?] = []
-                    var results: [NSManagedObject?] = []
-                    for i in offset..<(offset + pageSize) {
-                        //                    results.append(data[i])
-                        let article = NSManagedObject(entity: entity,
-                                                      insertInto: self.managedContext)
-                        article.setValue(data[i]?.header, forKeyPath: "header")
-                        article.setValue(data[i]?.content, forKeyPath: "content")
-                        do {
-                            try self.managedContext.save()
-                            results.append(article)
-                        } catch let error as NSError {
-                            print("Could not save. \(error), \(error.userInfo)")
+                    if json.count > 0 {
+                        self.topArticleId = json[0]["_id"].string!
+                        print("top Article Id: ", self.topArticleId)
+                        for (_, subJson) in json {
+                            let fetchResult = FetchResult()
+                            fetchResult.header = subJson["header"].string!
+                            fetchResult.content = subJson["content"].string!
+                            data.append(fetchResult)
                         }
+                        
+                        var pageSize = 10
+                        
+                        if((offset + pageSize) >= data.count && pageSize > 0) {
+                            pageSize = data.count - offset
+                        }
+                        
+                        let entity =
+                            NSEntityDescription.entity(forEntityName: "Article",
+                                                       in: self.managedContext)!
+                        
+                        //                var results: [FetchResult?] = []
+                        var results: [NSManagedObject?] = []
+                        for i in offset..<(offset + pageSize) {
+                            //                    results.append(data[i])
+                            let article = NSManagedObject(entity: entity,
+                                                          insertInto: self.managedContext)
+                            article.setValue(data[i]?.header, forKeyPath: "header")
+                            article.setValue(data[i]?.content, forKeyPath: "content")
+                            do {
+                                try self.managedContext.save()
+                                results.append(article)
+                            } catch let error as NSError {
+                                print("Could not save. \(error), \(error.userInfo)")
+                            }
+                        }
+                        completion(nil, results)
                     }
-                    completion(nil, results)
+                    else {
+                        completion(nil, [])
+                    }
                 }
             }
         }
     }
 
     private func fetchRemote (callback: @escaping (DataResponse<Any>)->Void) -> Void {
-        Alamofire.request(self.url, method: .get, parameters: ["token": self.token])
+        Alamofire.request(self.url, method: .get, parameters: ["token": self.token, "topArticleId": self.topArticleId])
             .responseJSON(completionHandler: { (response: DataResponse) -> Void in
                 callback(response)
         })

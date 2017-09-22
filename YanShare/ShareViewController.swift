@@ -32,7 +32,7 @@ class ShareViewController: SLComposeServiceViewController {
                     {
                         let jsURL = jsResults["URL"] as? String
                         print("jsURL: ", jsURL!)
-                        let parameters: Parameters = ["token": "6b8979cf259d058f1423274e146c06e2", "url": jsURL!]
+                        let parameters: Parameters = ["token": "97f9a5ba1c3b4fb6f00b3bfa545bdb5f", "url": jsURL!]
                         print("parameters", parameters)
                         print("sending reqeust to diffbot API")
                         Alamofire.request("https://api.diffbot.com/v3/article", parameters: parameters)
