@@ -40,7 +40,7 @@ public class Reachability {
     }
 }
 
-class FetchResult: NSObject {
+class FetchArticleResult: NSObject {
     var header: String = ""
     var content: String = ""
 }
@@ -69,7 +69,7 @@ class ArticleManager {
     }
 
     func retrieve (offset: Int = 0, completion: @escaping ((Error?, [NSManagedObject?]?) -> Void)) {
-        var data: [FetchResult?] = []
+        var data: [FetchArticleResult?] = []
         
         if !Reachability.isConnectedToNetwork() {
             print("not conncted to network. using local storage")
@@ -86,7 +86,7 @@ class ArticleManager {
                         self.topArticleId = json[0]["_id"].string!
                         print("top Article Id: ", self.topArticleId)
                         for (_, subJson) in json {
-                            let fetchResult = FetchResult()
+                            let fetchResult = FetchArticleResult()
                             fetchResult.header = subJson["header"].string!
                             fetchResult.content = subJson["content"].string!
                             data.append(fetchResult)

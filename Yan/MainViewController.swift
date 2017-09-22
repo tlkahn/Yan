@@ -157,13 +157,24 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
     
     @objc(tableView:didSelectRowAtIndexPath:)
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let n = indexPath.row
-        let avc = ArticleViewController()
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let avc = mainStoryboard.instantiateViewController(withIdentifier: "ArticleVC") as! ArticleViewController
         avc.parentVC = self
-        avc.menuIndex = n
+        let currentArticle = FetchArticleResult()
+        if let header = self.results[indexPath.row].value(forKey: "header") {
+            currentArticle.header = header as! String
+        }
+        else {
+            currentArticle.header = ""
+        }
+        if let content = self.results[indexPath.row].value(forKey: "content") {
+            currentArticle.content = (content as! String)
+        }
+        else {
+            currentArticle.content = ""
+        }
+        avc.currentArticle = currentArticle
         self.navVC?.pushViewController(avc, animated: true)
     }
-
-
 }
 

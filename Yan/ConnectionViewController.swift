@@ -41,5 +41,22 @@ class ConnectionViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.textLabel?.text = connections?[indexPath.row].title
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            print("connection to mail.")
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let nextVC = mainStoryboard.instantiateViewController(withIdentifier: "AddAccountVC") as! AddAccountTableViewController
+            let navVC = UINavigationController.init(rootViewController: nextVC)
+            navVC.viewControllers = [nextVC]
+            navVC.navigationBar.topItem?.title = "Connect to Mail"
+            nextVC.navVC = navVC
+            self.present(navVC, animated: true, completion: nil)
+            
+        default:
+            print("connection default")
+        }
+    }
 
 }

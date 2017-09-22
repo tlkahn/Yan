@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B80AE25D1F5D9AAE00A81E75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE3491F5D0B6D00FB6195 /* Main.storyboard */; };
 		B80AE2611F5DA39700A81E75 /* Article.xib in Resources */ = {isa = PBXBuildFile; fileRef = B80AE2601F5DA39700A81E75 /* Article.xib */; };
-		B80AE2621F5DA39700A81E75 /* Article.xib in Resources */ = {isa = PBXBuildFile; fileRef = B80AE2601F5DA39700A81E75 /* Article.xib */; };
 		B83020521F5D12390014B165 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83020511F5D12390014B165 /* ShareViewController.swift */; };
 		B83020551F5D12390014B165 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B83020531F5D12390014B165 /* MainInterface.storyboard */; };
 		B83020591F5D12390014B165 /* YanShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B830204F1F5D12390014B165 /* YanShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -35,6 +33,14 @@
 		B86EE34B1F5D0B6D00FB6195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE3491F5D0B6D00FB6195 /* Main.storyboard */; };
 		B86EE3501F5D0B6D00FB6195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE34E1F5D0B6D00FB6195 /* LaunchScreen.storyboard */; };
 		B86EE3581F5D0B7B00FB6195 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B86EE3571F5D0B7B00FB6195 /* piano.mp3 */; };
+		B885BFB51F750C2300260A4B /* Postal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFB41F750C0B00260A4B /* Postal.framework */; };
+		B885BFB61F750C2300260A4B /* Postal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFB41F750C0B00260A4B /* Postal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B885BFB71F750C2300260A4B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFB31F750C0B00260A4B /* Result.framework */; };
+		B885BFB81F750C2300260A4B /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFB31F750C0B00260A4B /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B885BFBC1F751C1400260A4B /* AddAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFBA1F75192300260A4B /* AddAccountTableViewController.swift */; };
+		B885BFBD1F751C1800260A4B /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */; };
+		B885BFBE1F751C1B00260A4B /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFBB1F751BE600260A4B /* LoginTableViewController.swift */; };
+		B885BFC01F751C7D00260A4B /* MailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFBF1F751C7800260A4B /* MailsTableViewController.swift */; };
 		B89353281F74853600C88490 /* Article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B89353261F74853600C88490 /* Article.xcdatamodeld */; };
 		B893532B1F748EDF00C88490 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89353291F748EDF00C88490 /* Article+CoreDataClass.swift */; };
 		B893532C1F748EDF00C88490 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89353291F748EDF00C88490 /* Article+CoreDataClass.swift */; };
@@ -57,7 +63,6 @@
 		B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B83020651F5D143C0014B165 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8AB76FE1F5F270F00A57D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */; };
 		B8B1B8381F5EFD2500A8C941 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */; };
-		B8B1B8391F5F005B00A8C941 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +95,9 @@
 			files = (
 				B8AB76F81F5F20D400A57D34 /* SwipeCellKit.framework in Embed Frameworks */,
 				B8AB76FA1F5F20D400A57D34 /* Alamofire.framework in Embed Frameworks */,
+				B885BFB81F750C2300260A4B /* Result.framework in Embed Frameworks */,
 				B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */,
+				B885BFB61F750C2300260A4B /* Postal.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +128,12 @@
 		B86EE34F1F5D0B6D00FB6195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B86EE3511F5D0B6D00FB6195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B86EE3571F5D0B7B00FB6195 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
+		B885BFB31F750C0B00260A4B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		B885BFB41F750C0B00260A4B /* Postal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Postal.framework; path = Carthage/Build/iOS/Postal.framework; sourceTree = "<group>"; };
+		B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Helpers.swift"; path = "Carthage/Checkouts/Postal/PostalDemo/PostalDemo/UIViewController+Helpers.swift"; sourceTree = SOURCE_ROOT; };
+		B885BFBA1F75192300260A4B /* AddAccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddAccountTableViewController.swift; path = Carthage/Checkouts/Postal/PostalDemo/PostalDemo/AddAccountTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		B885BFBB1F751BE600260A4B /* LoginTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginTableViewController.swift; path = Carthage/Checkouts/Postal/PostalDemo/PostalDemo/LoginTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		B885BFBF1F751C7800260A4B /* MailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailsTableViewController.swift; sourceTree = "<group>"; };
 		B89353041F747C1C00C88490 /* Yan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yan.entitlements; sourceTree = "<group>"; };
 		B89353271F74853600C88490 /* Article.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Article.xcdatamodel; sourceTree = "<group>"; };
 		B89353291F748EDF00C88490 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -153,7 +166,9 @@
 			files = (
 				B8AB76F71F5F20D400A57D34 /* SwipeCellKit.framework in Frameworks */,
 				B8AB76F91F5F20D400A57D34 /* Alamofire.framework in Frameworks */,
+				B885BFB71F750C2300260A4B /* Result.framework in Frameworks */,
 				B8AB76FB1F5F20D400A57D34 /* SwiftyJSON.framework in Frameworks */,
+				B885BFB51F750C2300260A4B /* Postal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +189,8 @@
 		B83020631F5D143C0014B165 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B885BFB41F750C0B00260A4B /* Postal.framework */,
+				B885BFB31F750C0B00260A4B /* Result.framework */,
 				B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */,
 				B83020641F5D143C0014B165 /* Alamofire.framework */,
 				B83020651F5D143C0014B165 /* SwiftyJSON.framework */,
@@ -206,6 +223,10 @@
 		B86EE3441F5D0B6D00FB6195 /* Yan */ = {
 			isa = PBXGroup;
 			children = (
+				B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */,
+				B885BFBA1F75192300260A4B /* AddAccountTableViewController.swift */,
+				B885BFBB1F751BE600260A4B /* LoginTableViewController.swift */,
+				B885BFBF1F751C7800260A4B /* MailsTableViewController.swift */,
 				B89353041F747C1C00C88490 /* Yan.entitlements */,
 				B89353261F74853600C88490 /* Article.xcdatamodeld */,
 				B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */,
@@ -342,11 +363,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B80AE25D1F5D9AAE00A81E75 /* Main.storyboard in Resources */,
 				B897C5711F5D3686003319A5 /* AMInputView.xib in Resources */,
 				B83020551F5D12390014B165 /* MainInterface.storyboard in Resources */,
 				B844950E1F5D7B49004DEC7E /* NextPageLoaderCell.xib in Resources */,
-				B80AE2621F5DA39700A81E75 /* Article.xib in Resources */,
 				B830205F1F5D129E0014B165 /* GetURL.js in Resources */,
 				B84495121F5D7B49004DEC7E /* NoResultsView.xib in Resources */,
 				B8983EA51F5F0C8200DFEE87 /* Assets.xcassets in Resources */,
@@ -381,7 +400,6 @@
 				B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */,
 				B8983EA21F5F09D000DFEE87 /* Connection.swift in Sources */,
 				B893532C1F748EDF00C88490 /* Article+CoreDataClass.swift in Sources */,
-				B8B1B8391F5F005B00A8C941 /* ConnectionViewController.swift in Sources */,
 				B893532E1F748EDF00C88490 /* Article+CoreDataProperties.swift in Sources */,
 				B84495181F5D7BB2004DEC7E /* JTTableViewController.swift in Sources */,
 				B844951B1F5D7BC0004DEC7E /* FakeService.swift in Sources */,
@@ -394,9 +412,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B885BFC01F751C7D00260A4B /* MailsTableViewController.swift in Sources */,
 				B86EE3481F5D0B6D00FB6195 /* MainViewController.swift in Sources */,
+				B885BFBC1F751C1400260A4B /* AddAccountTableViewController.swift in Sources */,
 				B8983EA11F5F09D000DFEE87 /* Connection.swift in Sources */,
 				B897C56E1F5D3686003319A5 /* AMInputView.swift in Sources */,
+				B885BFBD1F751C1800260A4B /* UIViewController+Helpers.swift in Sources */,
 				B8B1B8381F5EFD2500A8C941 /* ConnectionViewController.swift in Sources */,
 				B893532B1F748EDF00C88490 /* Article+CoreDataClass.swift in Sources */,
 				B86EE3461F5D0B6D00FB6195 /* AppDelegate.swift in Sources */,
@@ -406,6 +427,7 @@
 				B844951A1F5D7BC0004DEC7E /* FakeService.swift in Sources */,
 				B89353281F74853600C88490 /* Article.xcdatamodeld in Sources */,
 				B897C5691F5D35CA003319A5 /* LogInViewController.swift in Sources */,
+				B885BFBE1F751C1B00260A4B /* LoginTableViewController.swift in Sources */,
 				B84495151F5D7BB2004DEC7E /* JTFullTableViewController.swift in Sources */,
 				B84495061F5D48CB004DEC7E /* ArticleManager.swift in Sources */,
 			);

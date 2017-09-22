@@ -13,30 +13,32 @@ class ArticleViewController: UIViewController {
     
     @IBOutlet var header: UILabel!
     @IBOutlet var content: UITextView!
-    var menuIndex: Int?
+    var currentArticle: FetchArticleResult?
     var parentVC: MainViewController?
     
-    init(){
-        super.init(nibName: "Article", bundle: nil)
-    }
-    
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+//        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         print("article VC loaded")
-        self.content.isEditable = false
+        self.content?.isEditable = false
         self.automaticallyAdjustsScrollViewInsets = false
-        self.header.text = parentVC?.results[menuIndex!].value(forKey: "header") as? String
-        self.content.text = parentVC?.results[menuIndex!].value(forKey: "content") as? String
-        let utterance = AVSpeechUtterance(string: self.content.text)
+        self.header.lineBreakMode = .byWordWrapping // notice the 'b' instead of 'B'
+        self.header.numberOfLines = 0
+        
+        self.header.text = currentArticle?.header
+        self.content.text = currentArticle?.content
+        
+        let utterance = AVSpeechUtterance(string: (self.content?.text)!)
         utterance.voice = AVSpeechSynthesisVoice.init() //(language: "zh-CN")
         self.parentVC?.synthesizer?.speak(utterance)
+        
     }
     
     override func viewDidLayoutSubviews() {
-        self.content.setContentOffset(CGPoint.zero, animated: false)
+        self.content?.setContentOffset(CGPoint.zero, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showDialog()
+//        showDialog()
     }
     
     private func showDialog() {
@@ -145,13 +145,18 @@ class LoginViewController: UIViewController {
             let email = loginEmailInputView.textFieldView.text
             let password = loginPasswordInputView.textFieldView.text
             
-            verifyLogin(email: email!, password: password!) { json in
-                print("token", json["token"])
-                let token = json["token"].string
-                let userId = json["userId"].string
-                //save token and userId to userDefault
-                self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
+            if (UserDefaults.standard.value(forKey: "token") != nil) && (UserDefaults.standard.value(forKey: "userId") != nil) {
                 self.presentNextVC()
+            }
+            else {
+                verifyLogin(email: email!, password: password!) { json in
+                    print("token", json["token"])
+                    let token = json["token"].string
+                    let userId = json["userId"].string
+                    //save token and userId to userDefault
+                    self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
+                    self.presentNextVC()
+                }
             }
         }
     }
