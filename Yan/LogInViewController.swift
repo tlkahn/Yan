@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Locksmith
 
 enum AMLoginSignupViewMode {
     case login
@@ -76,13 +77,25 @@ class LoginViewController: UIViewController {
         toggleViewMode(animated: false)
         
         //add keyboard notification
-         NotificationCenter.default.addObserver(self, selector: #selector(keyboarFrameChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboarFrameChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    @objc private func appDidBecomeActive() {
+        if let dictionary = Locksmith.loadDataForUserAccount(userAccount: "Yan") {
+            if dictionary["email"] != nil {
+                self.presentNextVC()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        showDialog()
     }
+    
+    
     
     private func showDialog() {
         var alertController:UIAlertController?
@@ -141,10 +154,17 @@ class LoginViewController: UIViewController {
              toggleViewMode(animated: true)
         
         }else{
-            NSLog("Email:\(loginEmailInputView.textFieldView.text) Password:\(loginPasswordInputView.textFieldView.text)")
+            NSLog("Email:\(loginEmailInputView.textFieldView.text) Password:\(String(describing: loginPasswordInputView.textFieldView.text))")
             let email = loginEmailInputView.textFieldView.text
             let password = loginPasswordInputView.textFieldView.text
             
+            do {
+                try Locksmith.saveData(data: ["email": email!], forUserAccount: "Yan")
+            }
+            catch let e {
+                print(e.localizedDescription)
+            }
+        
             if (UserDefaults.standard.value(forKey: "token") != nil) && (UserDefaults.standard.value(forKey: "userId") != nil) {
                 self.presentNextVC()
             }
@@ -174,8 +194,14 @@ class LoginViewController: UIViewController {
         navVC.navigationBar.topItem?.title = "Yan"
         
         let tab = UITabBarController()
+        
         let connectMoreVC = ConnectionViewController()
-        tab.viewControllers = [navVC, connectMoreVC]
+        let navVC2 = UINavigationController.init(rootViewController: connectMoreVC)
+        navVC2.viewControllers = [connectMoreVC]
+        connectMoreVC.navVC = navVC2
+        navVC2.navigationBar.topItem?.title = "Connect"
+        
+        tab.viewControllers = [navVC, navVC2]
         
         tab.tabBar.items?[0].title = "Collections"
         tab.tabBar.items?[1].title = "Connections"
@@ -209,7 +235,7 @@ class LoginViewController: UIViewController {
         }else{
             
             //TODO: signup by this data
-            NSLog("Email:\(signupEmailInputView.textFieldView.text) Password:\(signupPasswordInputView.textFieldView.text), PasswordConfirm:\(signupPasswordConfirmInputView.textFieldView.text)")
+            NSLog("Email:\(String(describing: signupEmailInputView.textFieldView.text)) Password:\(String(describing: signupPasswordInputView.textFieldView.text)), PasswordConfirm:\(String(describing: signupPasswordConfirmInputView.textFieldView.text))")
             
             let email = signupEmailInputView.textFieldView.text
             let password = signupPasswordInputView.textFieldView.text

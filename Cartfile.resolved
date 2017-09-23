@@ -1,6 +1,6 @@
 github "Alamofire/Alamofire" "4.5.1"
-github "MailCore/mailcore2" "0.6.2"
 github "SwiftyJSON/SwiftyJSON" "3.1.4"
 github "SwipeCellKit/SwipeCellKit" "1.9.1"
 github "antitypical/Result" "3.2.3"
+github "matthewpalmer/Locksmith" "3.0.0"
 github "snipsco/Postal" "v0.5.0"

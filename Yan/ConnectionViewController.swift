@@ -7,6 +7,7 @@ class ConnectionViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var tableView: UITableView?
     var connections: [Connection]?
+    var navVC: UINavigationController?
     
     override func viewDidLoad() {
         print("connection VC loaded")
@@ -48,11 +49,8 @@ class ConnectionViewController: UIViewController, UITableViewDelegate, UITableVi
             print("connection to mail.")
             let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let nextVC = mainStoryboard.instantiateViewController(withIdentifier: "AddAccountVC") as! AddAccountTableViewController
-            let navVC = UINavigationController.init(rootViewController: nextVC)
-            nextVC.navVC = navVC
-            navVC.viewControllers = [nextVC]
-            navVC.navigationBar.topItem?.title = "Connect to Mail"
-            self.present(navVC, animated: true, completion: nil)
+            nextVC.navVC = self.navVC
+            self.navVC?.pushViewController(nextVC, animated: true)
             
         default:
             print("connection default")

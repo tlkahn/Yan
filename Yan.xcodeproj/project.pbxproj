@@ -61,6 +61,8 @@
 		B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B83020651F5D143C0014B165 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8AB76FE1F5F270F00A57D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */; };
 		B8B1B8381F5EFD2500A8C941 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */; };
+		B8DE3FA41F75F8AE00FAF9EF /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; };
+		B8DE3FA51F75F8AE00FAF9EF /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,7 @@
 				B8AB76F81F5F20D400A57D34 /* SwipeCellKit.framework in Embed Frameworks */,
 				B8AB76FA1F5F20D400A57D34 /* Alamofire.framework in Embed Frameworks */,
 				B885BFB81F750C2300260A4B /* Result.framework in Embed Frameworks */,
+				B8DE3FA51F75F8AE00FAF9EF /* Locksmith.framework in Embed Frameworks */,
 				B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */,
 				B885BFB61F750C2300260A4B /* Postal.framework in Embed Frameworks */,
 			);
@@ -145,6 +148,7 @@
 		B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
+		B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		B8FC18671F5E8DDF00BE6C8A /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
 		B8FC26131F5E8DE600BE6C8A /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
 		B8FC26141F5E8DE600BE6C8A /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				B8AB76F71F5F20D400A57D34 /* SwipeCellKit.framework in Frameworks */,
 				B8AB76F91F5F20D400A57D34 /* Alamofire.framework in Frameworks */,
 				B885BFB71F750C2300260A4B /* Result.framework in Frameworks */,
+				B8DE3FA41F75F8AE00FAF9EF /* Locksmith.framework in Frameworks */,
 				B8AB76FB1F5F20D400A57D34 /* SwiftyJSON.framework in Frameworks */,
 				B885BFB51F750C2300260A4B /* Postal.framework in Frameworks */,
 			);
@@ -205,6 +210,7 @@
 		B86EE3391F5D0B6D00FB6195 = {
 			isa = PBXGroup;
 			children = (
+				B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */,
 				B8FC18661F5E8DDF00BE6C8A /* server */,
 				B86EE3441F5D0B6D00FB6195 /* Yan */,
 				B83020501F5D12390014B165 /* YanShare */,

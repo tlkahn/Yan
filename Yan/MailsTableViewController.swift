@@ -75,12 +75,12 @@ extension MailsTableViewController {
         self.postal.fetchMessages("INBOX", uids: [Int(messages[indexPath.row].uid)], flags: [.body], onMessage: {
             message in
                 message.body?.allParts.flatMap({p in
-                    let dataString = String(data:(p.data?.decodedData)!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue)) as! String
-                    var str = dataString.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
-                    str = str.replacingOccurrences(of: "[\n\r\"\']", with: " ", options: String.CompareOptions.regularExpression, range: nil)
-                    str = str.replacingOccurrences(of: "([\\.\\#].+)(\\{[^}]+\\})", with: " ", options: String.CompareOptions.regularExpression, range: nil)
-                    currentArticle.content += str
-                    return str
+                    let dataString = String(data:(p.data?.decodedData)!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+                    var str = dataString?.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+                    str = str?.replacingOccurrences(of: "[\n\r\"\']", with: " ", options: String.CompareOptions.regularExpression, range: nil)
+                    str = str?.replacingOccurrences(of: "([\\.\\#].+)(\\{[^}]+\\})", with: " ", options: String.CompareOptions.regularExpression, range: nil)
+                    currentArticle.content += str!
+                    return str!
                 })
         }, onComplete: {_ in
             avc.currentArticle = currentArticle
