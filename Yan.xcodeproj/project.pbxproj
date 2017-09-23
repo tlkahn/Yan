@@ -63,7 +63,9 @@
 		B8B1B8381F5EFD2500A8C941 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */; };
 		B8DE3FA41F75F8AE00FAF9EF /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; };
 		B8DE3FA51F75F8AE00FAF9EF /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8DE3FA71F76113700FAF9EF /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DE3FA61F76113700FAF9EF /* CollectionsViewController.swift */; };
+		B8DE3FAA1F76362300FAF9EF /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */; };
+		B8DE3FAB1F76362300FAF9EF /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B8DE3FAE1F7636FB00FAF9EF /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DE3FAD1F76362E00FAF9EF /* CollectionsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B8DE3FAB1F76362300FAF9EF /* SVProgressHUD.framework in Embed Frameworks */,
 				B8AB76F81F5F20D400A57D34 /* SwipeCellKit.framework in Embed Frameworks */,
 				B8AB76FA1F5F20D400A57D34 /* Alamofire.framework in Embed Frameworks */,
 				B885BFB81F750C2300260A4B /* Result.framework in Embed Frameworks */,
@@ -150,8 +153,9 @@
 		B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
-		B8DE3FA61F76113700FAF9EF /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
 		B8DE3FA81F76143700FAF9EF /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = SOURCE_ROOT; };
+		B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		B8DE3FAD1F76362E00FAF9EF /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = SOURCE_ROOT; };
 		B8FC18671F5E8DDF00BE6C8A /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
 		B8FC26131F5E8DE600BE6C8A /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
 		B8FC26141F5E8DE600BE6C8A /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				B8AB76F91F5F20D400A57D34 /* Alamofire.framework in Frameworks */,
 				B885BFB71F750C2300260A4B /* Result.framework in Frameworks */,
 				B8DE3FA41F75F8AE00FAF9EF /* Locksmith.framework in Frameworks */,
+				B8DE3FAA1F76362300FAF9EF /* SVProgressHUD.framework in Frameworks */,
 				B8AB76FB1F5F20D400A57D34 /* SwiftyJSON.framework in Frameworks */,
 				B885BFB51F750C2300260A4B /* Postal.framework in Frameworks */,
 			);
@@ -213,7 +218,7 @@
 		B86EE3391F5D0B6D00FB6195 = {
 			isa = PBXGroup;
 			children = (
-				B8DE3FA61F76113700FAF9EF /* CollectionsViewController.swift */,
+				B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */,
 				B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */,
 				B8FC18661F5E8DDF00BE6C8A /* server */,
 				B86EE3441F5D0B6D00FB6195 /* Yan */,
@@ -241,6 +246,7 @@
 				B885BFBA1F75192300260A4B /* AddAccountTableViewController.swift */,
 				B885BFBB1F751BE600260A4B /* LoginTableViewController.swift */,
 				B885BFBF1F751C7800260A4B /* MailsTableViewController.swift */,
+				B8DE3FAD1F76362E00FAF9EF /* CollectionsViewController.swift */,
 				B89353041F747C1C00C88490 /* Yan.entitlements */,
 				B89353261F74853600C88490 /* Article.xcdatamodeld */,
 				B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */,
@@ -437,7 +443,7 @@
 				B844951D1F5D83C6004DEC7E /* ArticleViewController.swift in Sources */,
 				B844951A1F5D7BC0004DEC7E /* FakeService.swift in Sources */,
 				B89353281F74853600C88490 /* Article.xcdatamodeld in Sources */,
-				B8DE3FA71F76113700FAF9EF /* CollectionsViewController.swift in Sources */,
+				B8DE3FAE1F7636FB00FAF9EF /* CollectionsViewController.swift in Sources */,
 				B897C5691F5D35CA003319A5 /* LogInViewController.swift in Sources */,
 				B885BFBE1F751C1B00260A4B /* LoginTableViewController.swift in Sources */,
 				B84495151F5D7BB2004DEC7E /* JTFullTableViewController.swift in Sources */,

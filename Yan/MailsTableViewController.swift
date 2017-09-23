@@ -9,6 +9,7 @@
 import UIKit
 import Postal
 import Result
+import SVProgressHUD
 
 class MailsTableViewController: UITableViewController {
     var configuration: Configuration!
@@ -22,9 +23,13 @@ class MailsTableViewController: UITableViewController {
 
 extension MailsTableViewController {
     
+    override func viewWillDisappear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        SVProgressHUD.show()
         // Do connection
         postal.connect(timeout: Postal.defaultTimeout, completion: { [weak self] result in
             switch result {
@@ -35,6 +40,7 @@ extension MailsTableViewController {
                         if let error = error {
                             self?.showAlertError("Fetch error", message: (error as NSError).localizedDescription)
                         } else {
+                            SVProgressHUD.showSuccess(withStatus: "Done")
                             self?.tableView.reloadData()
                         }
                 })

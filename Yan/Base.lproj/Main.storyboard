@@ -650,7 +650,7 @@
                     <navigationItem key="navigationItem" title="Add Account" id="XJj-CQ-w9v">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="bHu-T8-otJ">
                             <connections>
-                                <segue destination="3Xi-Jw-fth" kind="show" identifier="mailsSegue" id="lkQ-pq-Sam"/>
+                                <action selector="connectAccount:" destination="RLb-y3-woy" id="Gxt-jD-Je9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
