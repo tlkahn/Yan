@@ -157,14 +157,7 @@ class LoginViewController: UIViewController {
             NSLog("Email:\(loginEmailInputView.textFieldView.text) Password:\(String(describing: loginPasswordInputView.textFieldView.text))")
             let email = loginEmailInputView.textFieldView.text
             let password = loginPasswordInputView.textFieldView.text
-            
-            do {
-                try Locksmith.saveData(data: ["email": email!], forUserAccount: "Yan")
-            }
-            catch let e {
-                print(e.localizedDescription)
-            }
-        
+
             if (UserDefaults.standard.value(forKey: "token") != nil) && (UserDefaults.standard.value(forKey: "userId") != nil) {
                 self.presentNextVC()
             }
@@ -175,6 +168,12 @@ class LoginViewController: UIViewController {
                     let userId = json["userId"].string
                     //save token and userId to userDefault
                     self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
+                    do {
+                        try Locksmith.saveData(data: ["email": email!], forUserAccount: "Yan")
+                    }
+                    catch let e {
+                        print(e.localizedDescription)
+                    }
                     self.presentNextVC()
                 }
             }
@@ -187,7 +186,7 @@ class LoginViewController: UIViewController {
     }
     
     private func presentNextVC() {
-        let nextVC = MainViewController()
+        let nextVC = CollectionsViewController()
         let navVC = UINavigationController.init(rootViewController: nextVC)
         navVC.viewControllers = [nextVC]
         nextVC.navVC = navVC
