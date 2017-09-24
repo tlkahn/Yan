@@ -157,6 +157,7 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let avc = mainStoryboard.instantiateViewController(withIdentifier: "ArticleVC") as! ArticleViewController
         avc.parentVC = self
+        avc.navVC = self.navVC
         let currentArticle = FetchArticleResult()
         if let header = self.results[indexPath.row].value(forKey: "header") {
             currentArticle.header = header as! String

@@ -76,6 +76,7 @@ extension MailsTableViewController {
         let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
         let avc = mainStoryboard.instantiateViewController(withIdentifier: "ArticleVC") as! ArticleViewController
         avc.parentVC = self
+        avc.navVC = self.navVC
         let currentArticle = FetchArticleResult()
         currentArticle.header = (messages[indexPath.row].header?.subject)!
 //        currentArticle.content = (messages[indexPath.row].body?.description)!

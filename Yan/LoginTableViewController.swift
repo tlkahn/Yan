@@ -17,7 +17,7 @@ enum LoginError: Error {
     case badPort
 }
 
-var collectionSources: Array<String> = ["Shared with Yan"]
+var collectionSources: Array<String> = UserDefaults.standard.stringArray(forKey: "collectionSources") ?? ["Shared with Yan"]
 
 extension String: LocalizedError {
     public var errorDescription: String? { return self }
@@ -141,6 +141,7 @@ final class LoginTableViewController: UITableViewController {
                     print("config encoded: ", dataStr.description)
                     UserDefaults.standard.set(data, forKey: self.config!.login)
                     collectionSources.append(self.config!.login)
+                    UserDefaults.standard.set(collectionSources, forKey: "collectionSources")
 //                    let d = dataStr.data(using: String.Encoding.utf8)
 //                    let c = Configuration.decode(data: d!)
 //                    print("config decoded: ", c.description)

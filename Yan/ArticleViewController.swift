@@ -16,6 +16,7 @@ class ArticleViewController: UIViewController {
     var currentArticle: FetchArticleResult?
     var parentVC: UIViewController?
     var synthesizer: AVSpeechSynthesizer?
+    var navVC: UINavigationController?
     
     required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
