@@ -139,7 +139,8 @@ final class LoginTableViewController: UITableViewController {
                     let data: Data? = self.config?.encode()
                     let dataStr = String(data: data!, encoding: String.Encoding.utf8)!
                     print("config encoded: ", dataStr.description)
-                    collectionSources.append(dataStr)
+                    UserDefaults.standard.set(data, forKey: self.config!.login)
+                    collectionSources.append(self.config!.login)
 //                    let d = dataStr.data(using: String.Encoding.utf8)
 //                    let c = Configuration.decode(data: d!)
 //                    print("config decoded: ", c.description)

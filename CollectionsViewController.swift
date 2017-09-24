@@ -42,10 +42,13 @@ class CollectionsViewController: UITableViewController {
             self.navVC?.pushViewController(nextVC, animated: true)
         default:
             let nextVC = MailsTableViewController()
-            let data = collectionSources[indexPath.row].data(using: String.Encoding.utf8)
-            nextVC.configuration = Configuration.decode(data: data!)
-            nextVC.navVC = self.navVC
-            self.navVC?.pushViewController(nextVC, animated: true)
+            if let data = UserDefaults.standard.data(forKey: collectionSources[indexPath.row]) {
+                nextVC.configuration = Configuration.decode(data: data)
+                nextVC.navVC = self.navVC
+                self.navVC?.pushViewController(nextVC, animated: true)
+            } else {
+                print("There is an issue")
+            }
             break
         }
     }
