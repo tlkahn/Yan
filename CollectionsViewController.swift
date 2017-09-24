@@ -11,7 +11,6 @@ import UIKit
 import Postal
 
 class CollectionsViewController: UITableViewController {
-    var navVC: UINavigationController?
     
     override func viewDidLoad() {
         self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -38,14 +37,12 @@ class CollectionsViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             let nextVC = MainViewController()
-            nextVC.navVC = self.navVC
-            self.navVC?.pushViewController(nextVC, animated: true)
+            self.navigationController!.pushViewController(nextVC, animated: true)
         default:
             let nextVC = MailsTableViewController()
             if let data = UserDefaults.standard.data(forKey: collectionSources[indexPath.row]) {
                 nextVC.configuration = Configuration.decode(data: data)
-                nextVC.navVC = self.navVC
-                self.navVC?.pushViewController(nextVC, animated: true)
+                self.navigationController!.pushViewController(nextVC, animated: true)
             } else {
                 print("There is an issue")
             }

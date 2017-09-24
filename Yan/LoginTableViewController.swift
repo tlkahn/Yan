@@ -147,7 +147,7 @@ final class LoginTableViewController: UITableViewController {
 //                    print("config decoded: ", c.description)
                     SVProgressHUD.showSuccess(withStatus: "Connected")
                 }
-                self.navVC?.popViewController(animated: true)
+                self.navigationController!.popViewController(animated: true)
                 collectionVC.tableView.reloadData()
             }
         } catch let error as LoginError {
@@ -160,7 +160,6 @@ final class LoginTableViewController: UITableViewController {
     
     var provider: MailProvider?
     
-    var navVC: UINavigationController?
     fileprivate var postal: Postal?
 }
 

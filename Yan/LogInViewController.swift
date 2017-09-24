@@ -16,8 +16,6 @@ enum AMLoginSignupViewMode {
     case signup
 }
 
-var collectionVC: CollectionsViewController = CollectionsViewController()
-
 class LoginViewController: UIViewController {
     
     let animationDuration = 0.25
@@ -85,11 +83,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func appDidBecomeActive() {
-        if let dictionary = Locksmith.loadDataForUserAccount(userAccount: "Yan") {
-            if dictionary["email"] != nil {
-                self.presentNextVC()
-            }
-        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -188,26 +182,8 @@ class LoginViewController: UIViewController {
     }
     
     private func presentNextVC() {
-        let nextVC = collectionVC
-        let navVC = UINavigationController.init(rootViewController: nextVC)
-        navVC.viewControllers = [nextVC]
-        nextVC.navVC = navVC
-        navVC.navigationBar.topItem?.title = "Yan"
-        
-        let tab = UITabBarController()
-        
-        let connectMoreVC = ConnectionViewController()
-        let navVC2 = UINavigationController.init(rootViewController: connectMoreVC)
-        navVC2.viewControllers = [connectMoreVC]
-        connectMoreVC.navVC = navVC2
-        navVC2.navigationBar.topItem?.title = "Connect"
-        
-        tab.viewControllers = [navVC, navVC2]
-        
-        tab.tabBar.items?[0].title = "Collections"
-        tab.tabBar.items?[1].title = "Connections"
-        tab.tabBar.items?[0].image = UIImage(named: "Unread")
-        tab.tabBar.items?[1].image = UIImage(named: "More")
+
+        let tab = TabViewController()
         
         self.present(tab, animated: true, completion: nil)
         

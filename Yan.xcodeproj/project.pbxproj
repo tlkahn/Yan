@@ -54,6 +54,7 @@
 		B8983EA51F5F0C8200DFEE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */; };
 		B8A61C661F76B7BE00A7CDD9 /* Postal.framework in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB41F750C0B00260A4B /* Postal.framework */; };
 		B8A61C681F76C2EE00A7CDD9 /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A61C671F76C0D700A7CDD9 /* LoginTableViewController.swift */; };
+		B8A61C6A1F77B52A00A7CDD9 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A61C691F77B52A00A7CDD9 /* TabViewController.swift */; };
 		B8AB76F71F5F20D400A57D34 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */; };
 		B8AB76F81F5F20D400A57D34 /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8AB76F91F5F20D400A57D34 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83020641F5D143C0014B165 /* Alamofire.framework */; };
@@ -151,6 +152,7 @@
 		B8983EA01F5F09D000DFEE87 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8A61C671F76C0D700A7CDD9 /* LoginTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
+		B8A61C691F77B52A00A7CDD9 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				B897C56B1F5D3686003319A5 /* AMInputView */,
 				B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */,
 				B897C5681F5D35CA003319A5 /* LogInViewController.swift */,
+				B8A61C691F77B52A00A7CDD9 /* TabViewController.swift */,
 				B86EE3471F5D0B6D00FB6195 /* MainViewController.swift */,
 				B8DE3FA81F76143700FAF9EF /* CollectionsViewController.swift */,
 				B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */,
@@ -450,6 +453,7 @@
 				B897C5691F5D35CA003319A5 /* LogInViewController.swift in Sources */,
 				B84495151F5D7BB2004DEC7E /* JTFullTableViewController.swift in Sources */,
 				B84495061F5D48CB004DEC7E /* ArticleManager.swift in Sources */,
+				B8A61C6A1F77B52A00A7CDD9 /* TabViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

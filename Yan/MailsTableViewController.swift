@@ -16,7 +16,6 @@ class MailsTableViewController: UITableViewController {
     
     fileprivate lazy var postal: Postal = Postal(configuration: self.configuration)
     fileprivate var messages: [FetchResult] = []
-    var navVC: UINavigationController?
 }
 
 // MARK: - View lifecycle
@@ -76,7 +75,6 @@ extension MailsTableViewController {
         let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
         let avc = mainStoryboard.instantiateViewController(withIdentifier: "ArticleVC") as! ArticleViewController
         avc.parentVC = self
-        avc.navVC = self.navVC
         let currentArticle = FetchArticleResult()
         currentArticle.header = (messages[indexPath.row].header?.subject)!
 //        currentArticle.content = (messages[indexPath.row].body?.description)!
@@ -92,7 +90,7 @@ extension MailsTableViewController {
                 })
         }, onComplete: {_ in
             avc.currentArticle = currentArticle
-            self.navVC?.pushViewController(avc, animated: true)
+            self.navigationController!.pushViewController(avc, animated: true)
         })
     }
 }

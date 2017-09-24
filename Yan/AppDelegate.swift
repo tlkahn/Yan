@@ -11,6 +11,7 @@ import CoreData
 
 var __domain__: String = "http://localhost:3000"
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

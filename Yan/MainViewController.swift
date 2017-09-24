@@ -9,7 +9,6 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
     var player: AVAudioPlayer?
     var lastIndex = 0
     var articles = ArticleManager(user_id: 0) //TODO: Fix this after auth done
-    var navVC: UINavigationController?
     var allResults: [NSManagedObject?] = []
     
     override func viewDidLoad() {
@@ -157,7 +156,6 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let avc = mainStoryboard.instantiateViewController(withIdentifier: "ArticleVC") as! ArticleViewController
         avc.parentVC = self
-        avc.navVC = self.navVC
         let currentArticle = FetchArticleResult()
         if let header = self.results[indexPath.row].value(forKey: "header") {
             currentArticle.header = header as! String
@@ -172,7 +170,7 @@ class MainViewController:  JTFullTableViewController<NSManagedObject>, SwipeTabl
             currentArticle.content = ""
         }
         avc.currentArticle = currentArticle
-        self.navVC?.pushViewController(avc, animated: true)
+        self.navigationController!.pushViewController(avc, animated: true)
     }
 }
 
