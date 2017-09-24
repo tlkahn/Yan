@@ -17,6 +17,8 @@ enum LoginError: Error {
     case badPort
 }
 
+var collectionSources: Array<String> = ["Shared with Yan"]
+
 extension String: LocalizedError {
     public var errorDescription: String? { return self }
 }
@@ -135,12 +137,16 @@ final class LoginTableViewController: UITableViewController {
                 else {
                     print("connection to \(String(describing: self.config!.hostname)) is successful.")
                     let data: Data? = self.config?.encode()
-                    let dataStr = String(data: data!, encoding: String.Encoding.ascii)!
+                    let dataStr = String(data: data!, encoding: String.Encoding.utf8)!
                     print("config encoded: ", dataStr.description)
-                    let c = Configuration.decode(data: data!)
-                    print("config decoded: ", c.description)
+                    collectionSources.append(dataStr)
+//                    let d = dataStr.data(using: String.Encoding.utf8)
+//                    let c = Configuration.decode(data: d!)
+//                    print("config decoded: ", c.description)
                     SVProgressHUD.showSuccess(withStatus: "Connected")
                 }
+                self.navVC?.popViewController(animated: true)
+                collectionVC.tableView.reloadData()
             }
         } catch let error as LoginError {
             showAlertError("Error login", message: (error as NSError).localizedDescription)
@@ -183,10 +189,6 @@ extension LoginTableViewController {
             switch result {
             case .success:
                 SVProgressHUD.dismiss()
-//                SVProgressHUD.showSuccess(withStatus: "Connected!")
-                let account = self?.config?.login
-                let hostname = self?.config?.hostname
-                collectionVC.collection.append(account! + "@" + hostname!)
                 callback(nil)
                 break
             case .failure(let error):

@@ -29,6 +29,7 @@ extension MailsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MailTableViewCell")
         SVProgressHUD.show()
         // Do connection
         postal.connect(timeout: Postal.defaultTimeout, completion: { [weak self] result in

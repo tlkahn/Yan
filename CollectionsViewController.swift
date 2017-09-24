@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
+import Postal
 
 class CollectionsViewController: UITableViewController {
-    var collection: [String] = ["Shared with Yan"]
     var navVC: UINavigationController?
     
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class CollectionsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = self.collection[indexPath.row]
+        cell.textLabel?.text = collectionSources[indexPath.row]
         return cell
     }
 
@@ -30,7 +30,7 @@ class CollectionsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.collection.count
+        return collectionSources.count
     }
 
     
@@ -40,8 +40,12 @@ class CollectionsViewController: UITableViewController {
             let nextVC = MainViewController()
             nextVC.navVC = self.navVC
             self.navVC?.pushViewController(nextVC, animated: true)
-            
         default:
+            let nextVC = MailsTableViewController()
+            let data = collectionSources[indexPath.row].data(using: String.Encoding.utf8)
+            nextVC.configuration = Configuration.decode(data: data!)
+            nextVC.navVC = self.navVC
+            self.navVC?.pushViewController(nextVC, animated: true)
             break
         }
     }
