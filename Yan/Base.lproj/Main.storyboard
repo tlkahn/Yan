@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uPW-wZ-Tfv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,7 +15,7 @@
         <!--Login View Controller-->
         <scene sceneID="RBD-mf-XQ9">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="uPW-wZ-Tfv" customClass="LoginViewController" customModule="Yan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" automaticallyAdjustsScrollViewInsets="NO" id="uPW-wZ-Tfv" customClass="LoginViewController" customModule="Yan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ubz-eS-nor"/>
                         <viewControllerLayoutGuide type="bottom" id="udY-6U-qKW"/>
@@ -769,7 +769,7 @@
         <!--Tab View Controller-->
         <scene sceneID="NV0-g8-cFh">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Uf7-4d-k3E" customClass="TabViewController" customModule="Yan" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabVC" automaticallyAdjustsScrollViewInsets="NO" id="Uf7-4d-k3E" customClass="TabViewController" customModule="Yan" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QA8-fe-BCU">
                         <autoresizingMask key="autoresizingMask"/>
