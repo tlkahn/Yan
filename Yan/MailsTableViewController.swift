@@ -80,8 +80,8 @@ extension MailsTableViewController {
 //        currentArticle.content = (messages[indexPath.row].body?.description)!
         self.postal.fetchMessages("INBOX", uids: [Int(messages[indexPath.row].uid)], flags: [.body], onMessage: {
             message in
-                message.body?.allParts.flatMap({p in
-                    let dataString = String(data:(p.data?.decodedData)!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+                let _ = message.body?.allParts.flatMap({p in
+                    let dataString = String(data:(p.data?.decodedData)!, encoding: String.Encoding.utf8) // String.Encoding(rawValue: String.Encoding.utf8.rawValue))
                     var str = dataString?.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
                     str = str?.replacingOccurrences(of: "[\n\r\"\']", with: " ", options: String.CompareOptions.regularExpression, range: nil)
                     str = str?.replacingOccurrences(of: "([\\.\\#].+)(\\{[^}]+\\})", with: " ", options: String.CompareOptions.regularExpression, range: nil)

@@ -16,6 +16,8 @@ enum AMLoginSignupViewMode {
     case signup
 }
 
+var collectionVC: CollectionsViewController = CollectionsViewController()
+
 class LoginViewController: UIViewController {
     
     let animationDuration = 0.25
@@ -110,7 +112,7 @@ class LoginViewController: UIViewController {
         var enteredText: String?
         let action = UIAlertAction(title: "Submit",
                                    style: UIAlertActionStyle.default,
-                                   handler: {[weak self]
+                                   handler: { //[weak self]
                                     (paramAction:UIAlertAction!) in
                                     if let textFields = alertController?.textFields{
                                         let theTextFields = textFields as [UITextField]
@@ -154,7 +156,7 @@ class LoginViewController: UIViewController {
              toggleViewMode(animated: true)
         
         }else{
-            NSLog("Email:\(loginEmailInputView.textFieldView.text) Password:\(String(describing: loginPasswordInputView.textFieldView.text))")
+            NSLog("Email:\(String(describing: loginEmailInputView.textFieldView.text)) Password:\(String(describing: loginPasswordInputView.textFieldView.text))")
             let email = loginEmailInputView.textFieldView.text
             let password = loginPasswordInputView.textFieldView.text
 
@@ -186,7 +188,7 @@ class LoginViewController: UIViewController {
     }
     
     private func presentNextVC() {
-        let nextVC = CollectionsViewController()
+        let nextVC = collectionVC
         let navVC = UINavigationController.init(rootViewController: nextVC)
         navVC.viewControllers = [nextVC]
         nextVC.navVC = navVC
