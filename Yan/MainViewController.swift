@@ -36,6 +36,15 @@ class MainViewController:  UITableViewController, SwipeTableViewCellDelegate {
             }
             self.results += resultsFromRemote!
             self.tableView.reloadData()
+            self.updateTabBarItemBadge(self.results.count)
+        }
+    }
+    
+    private func updateTabBarItemBadge(_ count: Int) {
+        if let tabItems = collectionVC.tabBarController?.tabBar.items as NSArray!
+        {
+            let tabItem = tabItems[0] as! UITabBarItem
+            tabItem.badgeValue = String(count)
         }
     }
     

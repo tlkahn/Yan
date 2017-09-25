@@ -2,6 +2,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import CoreData
+import SVProgressHUD
 
 var __globalManagedContext__ = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -67,60 +68,70 @@ class ArticleManager {
     }
 
     func retrieve (offset: Int = 0, completion: @escaping ((Error?, [NSManagedObject?]?) -> Void)) {
-        var data: [FetchArticleResult?] = []
         
         if !Reachability.isConnectedToNetwork() {
             print("not conncted to network. using local storage")
             self.fetchLocal() { results in
+                SVProgressHUD.showInfo(withStatus: "You're offline. Using local data.")
                 completion(nil, results)
             }
         }
         else {
             DispatchQueue.main.async() {
-                self.fetchRemote() {
-                    (response: DataResponse) in
-                    let json = JSON(data: response.data!)
-                    if json.count > 0 {
-                        self.topArticleId = json[0]["_id"].string!
-                        print("top Article Id: ", self.topArticleId)
-                        for (_, subJson) in json {
-                            let fetchResult = FetchArticleResult()
-                            fetchResult.header = subJson["header"].string!
-                            fetchResult.content = subJson["content"].string!
-                            data.append(fetchResult)
-                        }
-                        
-                        var pageSize = 10
-                        
-                        if((offset + pageSize) >= data.count && pageSize > 0) {
-                            pageSize = data.count - offset
-                        }
-                        
-                        let entity =
-                            NSEntityDescription.entity(forEntityName: "Article",
-                                                       in: __globalManagedContext__)!
-                        
-                        //                var results: [FetchResult?] = []
-                        var results: [NSManagedObject?] = []
-                        for i in offset..<(offset + pageSize) {
-                            //                    results.append(data[i])
-                            let article = NSManagedObject(entity: entity,
-                                                          insertInto: __globalManagedContext__)
-                            article.setValue(data[i]?.header, forKeyPath: "header")
-                            article.setValue(data[i]?.content, forKeyPath: "content")
-                            do {
-                                try __globalManagedContext__.save()
-                                results.append(article)
-                            } catch let error as NSError {
-                                print("Could not save. \(error), \(error.userInfo)")
-                            }
-                        }
-                        completion(nil, results)
+                self.fetchLocal() {results in
+                    if results?.count == 0 {
+                        self.syncServerAndUpdateLocal(offset: offset, completion: completion)
                     }
                     else {
-                        completion(nil, [])
+                        completion(nil, results)
                     }
                 }
+            }
+        }
+    }
+    
+    public func syncServerAndUpdateLocal(offset: Int = 0, completion: @escaping ((Error?, [NSManagedObject?]?) -> Void)) {
+        var data: [FetchArticleResult?] = []
+        self.fetchRemote() {
+            (response: DataResponse) in
+            let json = JSON(data: response.data!)
+            if json.count > 0 {
+                self.topArticleId = json[0]["_id"].string!
+                print("top Article Id: ", self.topArticleId)
+                for (_, subJson) in json {
+                    let fetchResult = FetchArticleResult()
+                    fetchResult.header = subJson["header"].string!
+                    fetchResult.content = subJson["content"].string!
+                    data.append(fetchResult)
+                }
+                
+                var pageSize = 10
+                
+                if((offset + pageSize) >= data.count && pageSize > 0) {
+                    pageSize = data.count - offset
+                }
+                
+                let entity =
+                    NSEntityDescription.entity(forEntityName: "Article",
+                                               in: __globalManagedContext__)!
+                
+                var results: [NSManagedObject?] = []
+                for i in offset..<(offset + pageSize) {
+                    let article = NSManagedObject(entity: entity,
+                                                  insertInto: __globalManagedContext__)
+                    article.setValue(data[i]?.header, forKeyPath: "header")
+                    article.setValue(data[i]?.content, forKeyPath: "content")
+                    do {
+                        try __globalManagedContext__.save()
+                        results.append(article)
+                    } catch let error as NSError {
+                        print("Could not save. \(error), \(error.userInfo)")
+                    }
+                }
+                completion(nil, results)
+            }
+            else {
+                completion(nil, [])
             }
         }
     }
