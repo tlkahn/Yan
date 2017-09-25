@@ -63,6 +63,7 @@
 		B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B83020651F5D143C0014B165 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8AB76FE1F5F270F00A57D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */; };
 		B8B1B8381F5EFD2500A8C941 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */; };
+		B8C4CA491F789C760051015C /* NetworkDoctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C4CA481F789C760051015C /* NetworkDoctor.swift */; };
 		B8DE3FA41F75F8AE00FAF9EF /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; };
 		B8DE3FA51F75F8AE00FAF9EF /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8DE3FAA1F76362300FAF9EF /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */; };
@@ -163,6 +164,7 @@
 		B8C4CA451F7893740051015C /* RefreshViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewAnimator.swift; sourceTree = "<group>"; };
 		B8C4CA461F7893740051015C /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		B8C4CA471F7893740051015C /* UIScrollView+PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PullToRefresh.swift"; sourceTree = "<group>"; };
+		B8C4CA481F789C760051015C /* NetworkDoctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDoctor.swift; sourceTree = "<group>"; };
 		B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		B8DE3FA81F76143700FAF9EF /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = SOURCE_ROOT; };
 		B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				B86EE34E1F5D0B6D00FB6195 /* LaunchScreen.storyboard */,
 				B86EE3511F5D0B6D00FB6195 /* Info.plist */,
 				B84495051F5D48CB004DEC7E /* ArticleManager.swift */,
+				B8C4CA481F789C760051015C /* NetworkDoctor.swift */,
 			);
 			path = Yan;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				B8A61C661F76B7BE00A7CDD9 /* Postal.framework in Sources */,
 				B885BFC01F751C7D00260A4B /* MailsTableViewController.swift in Sources */,
 				B86EE3481F5D0B6D00FB6195 /* MainViewController.swift in Sources */,
+				B8C4CA491F789C760051015C /* NetworkDoctor.swift in Sources */,
 				B885BFBC1F751C1400260A4B /* AddAccountTableViewController.swift in Sources */,
 				B8983EA11F5F09D000DFEE87 /* Connection.swift in Sources */,
 				B897C56E1F5D3686003319A5 /* AMInputView.swift in Sources */,

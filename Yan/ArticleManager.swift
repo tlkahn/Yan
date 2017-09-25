@@ -2,47 +2,45 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import CoreData
-import SystemConfiguration
 
-public class Reachability {
-    
-    class func isConnectedToNetwork() -> Bool {
-        
-        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
-        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        
-        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
-                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
-            }
-        }
-        
-        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
-        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
-            return false
-        }
-        
-        /* Only Working for WIFI
-         let isReachable = flags == .reachable
-         let needsConnection = flags == .connectionRequired
-         
-         return isReachable && !needsConnection
-         */
-        
-        // Working for Cellular and WIFI
-        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-        let ret = (isReachable && !needsConnection)
-        
-        return ret
-        
-    }
-}
+var __globalManagedContext__ = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
 class FetchArticleResult: NSObject {
     var header: String = ""
     var content: String = ""
+}
+
+protocol ArticleManagerDelegate {
+    func fetchRemote(callback: @escaping (DataResponse<Any>)->Void) -> Void
+    func fetchLocal(callback: @escaping ([NSManagedObject]?) -> Void) -> Void
+}
+
+class YanShareArticleManagerDelegate : ArticleManagerDelegate {
+    
+    var articleManager: ArticleManager?
+    
+    init(_ articleManager: ArticleManager) {
+        self.articleManager = articleManager
+    }
+    
+    func fetchRemote (callback: @escaping (DataResponse<Any>)->Void) -> Void {
+        Alamofire.request(self.articleManager!.url, method: .get, parameters: ["token": self.articleManager!.token, "topArticleId": self.articleManager!.topArticleId])
+            .responseJSON(completionHandler: { (response: DataResponse) -> Void in
+                callback(response)
+            })
+    }
+    
+    func fetchLocal(callback: @escaping ([NSManagedObject]?) -> Void) -> Void {
+        var articles: [NSManagedObject]?
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Article")
+        do {
+            articles = try __globalManagedContext__.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        callback(articles)
+    }
 }
 
 class ArticleManager {
@@ -51,11 +49,10 @@ class ArticleManager {
     var root: String
     var userId: String = ""
     var token: String = ""
-    var managedContext =
-        (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var topArticleId = ""
+    var delegate: ArticleManagerDelegate?
     
-    init(user_id: Int) {
+    init(user_id: UInt64) {
         self.root = __domain__
         if let tokenData = UserDefaults.standard.value(forKey: "token") as? NSData {
             self.token = NSKeyedUnarchiver.unarchiveObject(with: tokenData as Data) as! String
@@ -66,6 +63,7 @@ class ArticleManager {
         self.userId = UserDefaults.standard.value(forKey: "userId") as! String
         self.token = UserDefaults.standard.value(forKey: "token") as! String
         self.url = self.root + "/users/\(user_id)/articles"
+        self.delegate = YanShareArticleManagerDelegate(self)
     }
 
     func retrieve (offset: Int = 0, completion: @escaping ((Error?, [NSManagedObject?]?) -> Void)) {
@@ -100,18 +98,18 @@ class ArticleManager {
                         
                         let entity =
                             NSEntityDescription.entity(forEntityName: "Article",
-                                                       in: self.managedContext)!
+                                                       in: __globalManagedContext__)!
                         
                         //                var results: [FetchResult?] = []
                         var results: [NSManagedObject?] = []
                         for i in offset..<(offset + pageSize) {
                             //                    results.append(data[i])
                             let article = NSManagedObject(entity: entity,
-                                                          insertInto: self.managedContext)
+                                                          insertInto: __globalManagedContext__)
                             article.setValue(data[i]?.header, forKeyPath: "header")
                             article.setValue(data[i]?.content, forKeyPath: "content")
                             do {
-                                try self.managedContext.save()
+                                try __globalManagedContext__.save()
                                 results.append(article)
                             } catch let error as NSError {
                                 print("Could not save. \(error), \(error.userInfo)")
@@ -128,23 +126,10 @@ class ArticleManager {
     }
 
     private func fetchRemote (callback: @escaping (DataResponse<Any>)->Void) -> Void {
-        Alamofire.request(self.url, method: .get, parameters: ["token": self.token, "topArticleId": self.topArticleId])
-            .responseJSON(completionHandler: { (response: DataResponse) -> Void in
-                callback(response)
-        })
-        
+        self.delegate?.fetchRemote(callback: callback)
     }
     
     private func fetchLocal(callback: @escaping ([NSManagedObject]?) -> Void) -> Void {
-        var articles: [NSManagedObject]?
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "Article")
-
-        do {
-            articles = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        callback(articles)
+        self.delegate?.fetchLocal(callback: callback)
     }
 }
