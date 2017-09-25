@@ -330,25 +330,6 @@
             </objects>
             <point key="canvasLocation" x="1396" y="763.26836581709154"/>
         </scene>
-        <!--Connection View Controller-->
-        <scene sceneID="AKz-FK-Lc1">
-            <objects>
-                <viewController id="vfZ-SM-zfn" customClass="ConnectionViewController" customModule="Yan" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="drC-ci-G3x"/>
-                        <viewControllerLayoutGuide type="bottom" id="ILa-jP-2tf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vme-sg-WTn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="D15-Pd-VcY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wjo-ob-8ak" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1396" y="1527"/>
-        </scene>
         <!--Article View Controller-->
         <scene sceneID="KG0-fH-y3G">
             <objects>
@@ -396,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmp-Pz-SfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077.5999999999999" y="50.824587706146929"/>
+            <point key="canvasLocation" x="3550" y="763"/>
         </scene>
         <!--Add Account-->
         <scene sceneID="LUl-eA-ul1">
@@ -540,7 +521,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRs-Xo-0uH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1948" y="69.715142428785612"/>
+            <point key="canvasLocation" x="1396" y="1527"/>
         </scene>
         <!--Add Account-->
         <scene sceneID="mdp-f8-hrU">
@@ -701,7 +682,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5HZ-t6-Qnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767.1999999999998" y="69.715142428785612"/>
+            <point key="canvasLocation" x="2548" y="1527"/>
         </scene>
         <!--Mails Table View Controller-->
         <scene sceneID="wm0-ui-M7s">
@@ -745,7 +726,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqB-dC-sJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3564" y="69.715142428785612"/>
+            <point key="canvasLocation" x="3551" y="1527"/>
         </scene>
         <!--Item-->
         <scene sceneID="pyg-ow-fND">
@@ -772,6 +753,7 @@
                 <tabBarController storyboardIdentifier="tabVC" automaticallyAdjustsScrollViewInsets="NO" id="Uf7-4d-k3E" customClass="TabViewController" customModule="Yan" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QA8-fe-BCU">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -796,7 +778,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vfZ-SM-zfn" kind="relationship" relationship="rootViewController" id="kgy-86-bIg"/>
+                        <segue destination="tYh-ri-9m3" kind="relationship" relationship="rootViewController" id="IHx-se-U9S"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPy-av-WGP" userLabel="First Responder" sceneMemberID="firstResponder"/>

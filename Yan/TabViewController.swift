@@ -18,7 +18,8 @@ class TabViewController: UITabBarController {
         navVC.viewControllers = [nextVC]
         navVC.navigationBar.topItem?.title = "Yan"
         
-        let connectMoreVC = ConnectionViewController()
+        let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let connectMoreVC = mainStoryboard.instantiateViewController(withIdentifier: "AddAccountVC") as! AddAccountTableViewController
         let navVC2 = UINavigationController.init(rootViewController: connectMoreVC)
         navVC2.viewControllers = [connectMoreVC]
         navVC2.navigationBar.topItem?.title = "Connect"
