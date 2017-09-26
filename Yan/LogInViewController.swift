@@ -150,36 +150,27 @@ class LoginViewController: UIViewController {
              toggleViewMode(animated: true)
         
         }else{
-            NSLog("Email:\(String(describing: loginEmailInputView.textFieldView.text)) Password:\(String(describing: loginPasswordInputView.textFieldView.text))")
+            print("Email:\(String(describing: loginEmailInputView.textFieldView.text)) Password:\(String(describing: loginPasswordInputView.textFieldView.text))")
+            
             let email = loginEmailInputView.textFieldView.text
             let password = loginPasswordInputView.textFieldView.text
 
-            if (UserDefaults.standard.value(forKey: "token") != nil) && (UserDefaults.standard.value(forKey: "userId") != nil) {
+            verifyLogin(email: email!, password: password!) { json in
+                print("token", json["token"])
+                let token = json["token"].string
+                let userId = json["userId"].string
+                //save token and userId to userDefault
+//                self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
+                self.updateKeyChain(email: email!, password: password!, token: token!, userId: userId!)
                 self.presentNextVC()
-            }
-            else {
-                verifyLogin(email: email!, password: password!) { json in
-                    print("token", json["token"])
-                    let token = json["token"].string
-                    let userId = json["userId"].string
-                    //save token and userId to userDefault
-                    self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
-                    do {
-                        try Locksmith.saveData(data: ["email": email!], forUserAccount: "Yan")
-                    }
-                    catch let e {
-                        print(e.localizedDescription)
-                    }
-                    self.presentNextVC()
-                }
             }
         }
     }
     
-    private func updateUserDefaultsWithCredentials(token: String, userId: String) {
-        UserDefaults.standard.setValue(token, forKey: "token")
-        UserDefaults.standard.setValue(userId, forKey: "userId")
-    }
+//    private func updateUserDefaultsWithCredentials(token: String, userId: String) {
+//        UserDefaults.standard.setValue(token, forKey: "token")
+//        UserDefaults.standard.setValue(userId, forKey: "userId")
+//    }
     
     private func presentNextVC() {
 
@@ -227,10 +218,20 @@ class LoginViewController: UIViewController {
                 print("token", json["token"])
                 let token = json["token"].string
                 let userId = json["userId"].string
-                self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
+//                self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
+                self.updateKeyChain(email: email!, password: password!, token: token!, userId: userId!)
                 self.presentNextVC()
             }
             
+        }
+    }
+    
+    private func updateKeyChain(email: String, password: String, token: String, userId: String) {
+        do {
+            try Locksmith.saveData(data: ["email": email, "password": password, "token": token, "userId": userId], forUserAccount: "Yan")
+        }
+        catch let e {
+            print(e.localizedDescription)
         }
     }
 

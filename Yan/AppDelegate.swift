@@ -11,7 +11,8 @@ import CoreData
 import Locksmith
 
 var __domain__: String = "http://localhost:3000"
-
+var mainYanShareVC: MainViewController?
+var collectionVC: CollectionsViewController?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,10 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
+        mainYanShareVC = MainViewController()
+        collectionVC = CollectionsViewController()
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         var initialViewController: UIViewController
-        if Locksmith.loadDataForUserAccount(userAccount: "Yan")!["email"] == nil {
+        
+        try? Locksmith.deleteDataForUserAccount(userAccount: "Yan") //TODO: to be removed
+        
+        if Locksmith.loadDataForUserAccount(userAccount: "Yan")?["email"] == nil {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "loginVC")
         }
         else {

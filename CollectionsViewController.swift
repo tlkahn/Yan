@@ -36,8 +36,8 @@ class CollectionsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let nextVC = MainViewController()
-            self.navigationController!.pushViewController(nextVC, animated: true)
+            let nextVC = mainYanShareVC
+            self.navigationController!.pushViewController(nextVC!, animated: true)
         default:
             let nextVC = MailsTableViewController()
             if let data = UserDefaults.standard.data(forKey: collectionSources[indexPath.row]) {

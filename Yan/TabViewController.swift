@@ -8,14 +8,12 @@
 
 import UIKit
 
-var collectionVC: CollectionsViewController = CollectionsViewController()
-
 class TabViewController: UITabBarController {
     override func viewDidLoad() {
         
         let nextVC = collectionVC
-        let navVC = UINavigationController.init(rootViewController: nextVC)
-        navVC.viewControllers = [nextVC]
+        let navVC = UINavigationController.init(rootViewController: nextVC!)
+        navVC.viewControllers = [nextVC!]
         navVC.navigationBar.topItem?.title = "Yan"
         
         let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)

@@ -61,7 +61,6 @@
 		B8AB76FA1F5F20D400A57D34 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B83020641F5D143C0014B165 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8AB76FB1F5F20D400A57D34 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83020651F5D143C0014B165 /* SwiftyJSON.framework */; };
 		B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B83020651F5D143C0014B165 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8AB76FE1F5F270F00A57D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE3451F5D0B6D00FB6195 /* AppDelegate.swift */; };
 		B8B1B8381F5EFD2500A8C941 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */; };
 		B8C4CA491F789C760051015C /* NetworkDoctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C4CA481F789C760051015C /* NetworkDoctor.swift */; };
 		B8C4CA4B1F79445C0051015C /* Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C4CA4A1F79445C0051015C /* Hydra.framework */; };
@@ -159,14 +158,6 @@
 		B8A61C691F77B52A00A7CDD9 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
-		B8C4CA401F7893740051015C /* DefaultRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRefreshView.swift; sourceTree = "<group>"; };
-		B8C4CA411F7893740051015C /* DefaultViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewAnimator.swift; sourceTree = "<group>"; };
-		B8C4CA421F7893740051015C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8C4CA431F7893740051015C /* PullToRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullToRefresh.h; sourceTree = "<group>"; };
-		B8C4CA441F7893740051015C /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
-		B8C4CA451F7893740051015C /* RefreshViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewAnimator.swift; sourceTree = "<group>"; };
-		B8C4CA461F7893740051015C /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		B8C4CA471F7893740051015C /* UIScrollView+PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PullToRefresh.swift"; sourceTree = "<group>"; };
 		B8C4CA481F789C760051015C /* NetworkDoctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDoctor.swift; sourceTree = "<group>"; };
 		B8C4CA4A1F79445C0051015C /* Hydra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hydra.framework; path = Carthage/Build/iOS/Hydra.framework; sourceTree = "<group>"; };
 		B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
@@ -240,7 +231,6 @@
 				B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */,
 				B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */,
 				B8FC18661F5E8DDF00BE6C8A /* server */,
-				B8C4CA3F1F7893740051015C /* PullToRefresh */,
 				B86EE3441F5D0B6D00FB6195 /* Yan */,
 				B83020501F5D12390014B165 /* YanShare */,
 				B86EE3431F5D0B6D00FB6195 /* Products */,
@@ -303,21 +293,6 @@
 				B897C56D1F5D3686003319A5 /* AMInputView.xib */,
 			);
 			path = AMInputView;
-			sourceTree = "<group>";
-		};
-		B8C4CA3F1F7893740051015C /* PullToRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				B8C4CA401F7893740051015C /* DefaultRefreshView.swift */,
-				B8C4CA411F7893740051015C /* DefaultViewAnimator.swift */,
-				B8C4CA421F7893740051015C /* Info.plist */,
-				B8C4CA431F7893740051015C /* PullToRefresh.h */,
-				B8C4CA441F7893740051015C /* PullToRefresh.swift */,
-				B8C4CA451F7893740051015C /* RefreshViewAnimator.swift */,
-				B8C4CA461F7893740051015C /* State.swift */,
-				B8C4CA471F7893740051015C /* UIScrollView+PullToRefresh.swift */,
-			);
-			path = PullToRefresh;
 			sourceTree = "<group>";
 		};
 		B8FC18661F5E8DDF00BE6C8A /* server */ = {
@@ -454,7 +429,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8AB76FE1F5F270F00A57D34 /* AppDelegate.swift in Sources */,
 				B897C56F1F5D3686003319A5 /* AMInputView.swift in Sources */,
 				B8983EA21F5F09D000DFEE87 /* Connection.swift in Sources */,
 				B84495181F5D7BB2004DEC7E /* JTTableViewController.swift in Sources */,
@@ -666,7 +640,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Yan";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/Yan",
+					"${PROJECT_DIR}/PullToRefresh",
+				);
 				INFOPLIST_FILE = Yan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
@@ -688,7 +665,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Yan";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/Yan",
+					"${PROJECT_DIR}/PullToRefresh",
+				);
 				INFOPLIST_FILE = Yan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";

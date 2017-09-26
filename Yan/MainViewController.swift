@@ -3,6 +3,8 @@ import Foundation
 import AVFoundation
 import SwipeCellKit
 import CoreData
+import SVProgressHUD
+import Locksmith
 
 extension SwipeAction {
     convenience init(style: SwipeCellKit.SwipeActionStyle, title: String?) {
@@ -10,38 +12,63 @@ extension SwipeAction {
     }
 }
 
-class MainViewController:  UITableViewController, SwipeTableViewCellDelegate {
+public class MainViewController:  UITableViewController, SwipeTableViewCellDelegate {
 
     var player: AVAudioPlayer?
     var lastIndex = 0
     var articleManager: ArticleManager?
     var results: [NSManagedObject?] = []
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.tableView?.register(SwipeTableViewCell.self, forCellReuseIdentifier: "cell")
+        let userId = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["userId"] as! String
+        let token = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["token"] as! String
+        let url = __domain__ + "/users/\(userId)/articles"
+        articleManager = ArticleManager(userId: userId, token: token, url: url)
         fetchData()
         setupUI()
+        setupPullToRefresh()
     }
     
-    private func getUserId() -> UInt64 {
-        return 0 //TODO: Fix this after auth done
+    func setupPullToRefresh() {
+        refreshControl = UIRefreshControl()
+//        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl!.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
     }
     
     private func fetchData() {
-        articleManager = ArticleManager(user_id: getUserId())
-        articleManager?.retrieve { (error, resultsFromRemote) in
+        articleManager?.retrieve { (error, resultsFromLocal) in
             if let error = error {
                 print(error)
             }
+            self.results = resultsFromLocal!
+            self.tableView.reloadData()
+            self.updateBadge()
+        }
+    }
+    
+    private func updateBadge() {
+        let newItemCount = self.results.count
+        self.updateTabBarItemBadge(newItemCount)
+    }
+    
+    @objc private func refreshData() {
+        articleManager?.retrieveFromRemoteAndSyncWithLocal { (error, resultsFromRemote) in
+            if let error = error {
+                print(error)
+                self.refreshControl!.endRefreshing()
+            }
             self.results += resultsFromRemote!
             self.tableView.reloadData()
-            self.updateTabBarItemBadge(self.results.count)
+            self.updateBadge()
+            SVProgressHUD.showInfo(withStatus: "\(resultsFromRemote!.count) new entries")
+            self.refreshControl!.endRefreshing()
         }
     }
     
     private func updateTabBarItemBadge(_ count: Int) {
-        if let tabItems = collectionVC.tabBarController?.tabBar.items as NSArray!
+        if let tabItems = collectionVC?.tabBarController?.tabBar.items as NSArray!
         {
             let tabItem = tabItems[0] as! UITabBarItem
             tabItem.badgeValue = String(count)
@@ -52,22 +79,22 @@ class MainViewController:  UITableViewController, SwipeTableViewCellDelegate {
         self.tableView?.separatorStyle = .none
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.results.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SwipeTableViewCell
         cell.textLabel?.text = self.results[indexPath.row]?.value(forKey: "header") as? String
         cell.delegate = self
         return cell
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         let deleteAction = SwipeAction(style: .destructive, title: "Delete")
         let flagAction = SwipeAction(style: .default, title: "Flag")
@@ -76,7 +103,7 @@ class MainViewController:  UITableViewController, SwipeTableViewCellDelegate {
     }
     
     @objc(tableView:didSelectRowAtIndexPath:)
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let avc = mainStoryboard.instantiateViewController(withIdentifier: "ArticleVC") as! ArticleViewController
         avc.parentVC = self

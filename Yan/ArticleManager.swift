@@ -47,23 +47,15 @@ class YanShareArticleManagerDelegate : ArticleManagerDelegate {
 class ArticleManager {
 
     var url: String
-    var root: String
     var userId: String = ""
     var token: String = ""
     var topArticleId = ""
     var delegate: ArticleManagerDelegate?
     
-    init(user_id: UInt64) {
-        self.root = __domain__
-        if let tokenData = UserDefaults.standard.value(forKey: "token") as? NSData {
-            self.token = NSKeyedUnarchiver.unarchiveObject(with: tokenData as Data) as! String
-        }
-        if let userIdData = UserDefaults.standard.value(forKey: "userId") as? NSData {
-            self.userId = NSKeyedUnarchiver.unarchiveObject(with: userIdData as Data) as! String
-        }
-        self.userId = UserDefaults.standard.value(forKey: "userId") as! String
-        self.token = UserDefaults.standard.value(forKey: "token") as! String
-        self.url = self.root + "/users/\(user_id)/articles"
+    init(userId: String, token: String, url: String) {
+        self.userId = userId
+        self.token = token
+        self.url = url
         self.delegate = YanShareArticleManagerDelegate(self)
     }
 
@@ -88,6 +80,10 @@ class ArticleManager {
                 }
             }
         }
+    }
+    
+    func retrieveFromRemoteAndSyncWithLocal (offset: Int = 0, completion: @escaping ((Error?, [NSManagedObject?]?) -> Void)) {
+        self.syncServerAndUpdateLocal(offset: offset, completion: completion)
     }
     
     public func syncServerAndUpdateLocal(offset: Int = 0, completion: @escaping ((Error?, [NSManagedObject?]?) -> Void)) {

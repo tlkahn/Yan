@@ -12,6 +12,8 @@ import MobileCoreServices
 import Alamofire
 import SwiftyJSON
 
+var __domain__: String = "http://localhost:3000"
+
 class ShareViewController: SLComposeServiceViewController {
     
     override func isContentValid() -> Bool {
