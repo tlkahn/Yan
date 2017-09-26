@@ -29,13 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var initialViewController: UIViewController
         
-        try? Locksmith.deleteDataForUserAccount(userAccount: "Yan") //TODO: to be removed
+//        try? Locksmith.deleteDataForUserAccount(userAccount: "Yan") //TODO: to be removed
         
         if Locksmith.loadDataForUserAccount(userAccount: "Yan")?["email"] == nil {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "loginVC")
         }
         else {
-            initialViewController = mainYanShareVC! //storyboard.instantiateViewController(withIdentifier: "tabVC")
+            let navVC = UINavigationController.init(rootViewController: mainYanShareVC!)
+            navVC.viewControllers = [mainYanShareVC!]
+            navVC.navigationBar.topItem?.title = "Yan"
+            initialViewController =  navVC //storyboard.instantiateViewController(withIdentifier: "tabVC")
         }
         
         self.window?.rootViewController = initialViewController
