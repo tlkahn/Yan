@@ -12,7 +12,6 @@ import Locksmith
 
 var __domain__: String = "http://localhost:3000"
 var mainYanShareVC: MainViewController?
-var collectionVC: CollectionsViewController?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         mainYanShareVC = MainViewController()
-        collectionVC = CollectionsViewController()
+//        collectionVC = CollectionsViewController()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -36,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "loginVC")
         }
         else {
-            initialViewController = storyboard.instantiateViewController(withIdentifier: "tabVC")
+            initialViewController = mainYanShareVC! //storyboard.instantiateViewController(withIdentifier: "tabVC")
         }
         
         self.window?.rootViewController = initialViewController

@@ -8,6 +8,8 @@
 
 import UIKit
 
+var collectionVC: CollectionsViewController?
+
 class TabViewController: UITabBarController {
     override func viewDidLoad() {
         

@@ -148,7 +148,7 @@ final class LoginTableViewController: UITableViewController {
                     SVProgressHUD.showSuccess(withStatus: "Connected")
                 }
                 self.navigationController!.popViewController(animated: true)
-                collectionVC?.tableView.reloadData()
+//                collectionVC?.tableView.reloadData()
             }
         } catch let error as LoginError {
             showAlertError("Error login", message: (error as NSError).localizedDescription)

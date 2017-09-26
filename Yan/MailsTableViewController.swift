@@ -71,6 +71,14 @@ extension MailsTableViewController {
         return cell
     }
     
+    private func sanitizeMailBody(_ dataString: String, callback: (_ result: String) -> Void ) {
+        var str: String
+        str = dataString.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+        str = str.replacingOccurrences(of: "[\n\r\"\']", with: " ", options: String.CompareOptions.regularExpression, range: nil)
+        str = str.replacingOccurrences(of: "([\\.\\#].+)(\\{[^}]+\\})", with: " ", options: String.CompareOptions.regularExpression, range: nil)
+        callback(str)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
         let avc = mainStoryboard.instantiateViewController(withIdentifier: "ArticleVC") as! ArticleViewController
@@ -81,12 +89,11 @@ extension MailsTableViewController {
         self.postal.fetchMessages("INBOX", uids: [Int(messages[indexPath.row].uid)], flags: [.body], onMessage: {
             message in
                 let _ = message.body?.allParts.flatMap({p in
-                    let dataString = String(data:(p.data?.decodedData)!, encoding: String.Encoding.utf8) // String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-                    var str = dataString?.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
-                    str = str?.replacingOccurrences(of: "[\n\r\"\']", with: " ", options: String.CompareOptions.regularExpression, range: nil)
-                    str = str?.replacingOccurrences(of: "([\\.\\#].+)(\\{[^}]+\\})", with: " ", options: String.CompareOptions.regularExpression, range: nil)
-                    currentArticle.content += str!
-                    return str!
+                    let dataString = String(data:(p.data?.decodedData)!, encoding: String.Encoding.utf8)
+                    self.sanitizeMailBody(dataString!) { result in
+                        currentArticle.content += result
+                    }
+                    return currentArticle.content
                 })
         }, onComplete: {_ in
             avc.currentArticle = currentArticle

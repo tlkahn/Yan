@@ -44,13 +44,13 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
             }
             self.results = resultsFromLocal!
             self.tableView.reloadData()
-            self.updateBadge()
+//            self.updateBadge()
         }
     }
     
     private func updateBadge() {
-        let newItemCount = self.results.count
-        self.updateTabBarItemBadge(newItemCount)
+//        let newItemCount = self.results.count
+//        self.updateTabBarItemBadge(newItemCount)
     }
     
     @objc private func refreshData() {
@@ -61,19 +61,19 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
             }
             self.results += resultsFromRemote!
             self.tableView.reloadData()
-            self.updateBadge()
+//            self.updateBadge()
             SVProgressHUD.showInfo(withStatus: "\(resultsFromRemote!.count) new entries")
             self.refreshControl!.endRefreshing()
         }
     }
     
-    private func updateTabBarItemBadge(_ count: Int) {
-        if let tabItems = collectionVC?.tabBarController?.tabBar.items as NSArray!
-        {
-            let tabItem = tabItems[0] as! UITabBarItem
-            tabItem.badgeValue = String(count)
-        }
-    }
+//    private func updateTabBarItemBadge(_ count: Int) {
+//        if let tabItems = collectionVC?.tabBarController?.tabBar.items as NSArray!
+//        {
+//            let tabItem = tabItems[0] as! UITabBarItem
+//            tabItem.badgeValue = String(count)
+//        }
+//    }
     
     private func setupUI() {
         self.tableView?.separatorStyle = .none

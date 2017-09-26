@@ -174,9 +174,15 @@ class LoginViewController: UIViewController {
     
     private func presentNextVC() {
 
-        let tab = TabViewController()
+//        let tab = TabViewController()
         
-        self.present(tab, animated: true, completion: nil)
+        let nextVC = mainYanShareVC
+        let navVC = UINavigationController.init(rootViewController: nextVC!)
+        navVC.viewControllers = [nextVC!]
+        navVC.navigationBar.topItem?.title = "Yan"
+        
+        self.present(navVC, animated: true, completion: nil)
+        
         
     }
     
