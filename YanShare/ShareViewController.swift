@@ -11,10 +11,11 @@ import Social
 import MobileCoreServices
 import Alamofire
 import SwiftyJSON
-
-var __domain__: String = "http://localhost:3000"
+import Locksmith
 
 class ShareViewController: SLComposeServiceViewController {
+    
+    let sharedContainer = UserDefaults(suiteName: "YAN")
     
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
@@ -23,42 +24,63 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func didSelectPost() {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-        let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem
-        let itemProvider = extensionItem.attachments?.first as! NSItemProvider
-        let propertyList = String(kUTTypePropertyList)
-        if itemProvider.hasItemConformingToTypeIdentifier(propertyList) {
-            itemProvider.loadItem(forTypeIdentifier: propertyList, options: nil, completionHandler: { (item, error) -> Void in
-                guard let dictionary = item as? NSDictionary else { return }
-                DispatchQueue.main.async {
-                    if let jsResults = dictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary
-                    {
-                        let jsURL = jsResults["URL"] as? String
-                        print("jsURL: ", jsURL!)
-                        let parameters: Parameters = ["token": "97f9a5ba1c3b4fb6f00b3bfa545bdb5f", "url": jsURL!]
-                        print("parameters", parameters)
-                        print("sending reqeust to diffbot API")
-                        Alamofire.request("https://api.diffbot.com/v3/article", parameters: parameters)
-                            .responseJSON(completionHandler: { (response: DataResponse) -> Void in
-                                if let data = response.data {
-                                    let json = JSON(data: data)
-                                    print("text: ", json["objects"][0]["text"])
-                                    print("title: ", json["objects"][0]["title"])
-                                    let p: Parameters = ["header":json["objects"][0]["title"], "content": json["objects"][0]["text"]]
-                                    Alamofire.request(__domain__ + "/articles", method: .post, parameters: p).responseJSON(completionHandler: {
-                                        (response: DataResponse) -> Void in
-                                        print(response)
-                                    })
-                                }
-                            })
+        let domain = sharedContainer!.value(forKey: "domain") as? String ?? "http://localhost:3000"
+//        if let userId = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["email"] {
+        if let userId = sharedContainer!.value(forKey: "userId") {
+            let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem
+            let itemProvider = extensionItem.attachments?.first as! NSItemProvider
+            let propertyList = String(kUTTypePropertyList)
+            if itemProvider.hasItemConformingToTypeIdentifier(propertyList) {
+                itemProvider.loadItem(forTypeIdentifier: propertyList, options: nil, completionHandler: { (item, error) -> Void in
+                    guard let dictionary = item as? NSDictionary else { return }
+                    DispatchQueue.main.async {
+                        if let jsResults = dictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary
+                        {
+                            let jsURL = jsResults["URL"] as? String
+                            print("jsURL: ", jsURL!)
+                            let parameters: Parameters = ["token": "97f9a5ba1c3b4fb6f00b3bfa545bdb5f", "url": jsURL!, "userId": userId]
+                            print("parameters", parameters)
+                            print("sending reqeust to diffbot API")
+                            Alamofire.request("https://api.diffbot.com/v3/article", parameters: parameters)
+                                .responseJSON(completionHandler: { (response: DataResponse) -> Void in
+                                    if let data = response.data {
+                                        let json = JSON(data: data)
+                                        print("text: ", json["objects"][0]["text"])
+                                        print("title: ", json["objects"][0]["title"])
+                                        print("userId: ", userId)
+                                        let p: Parameters = ["header":json["objects"][0]["title"], "content": json["objects"][0]["text"], "userId": userId]
+                                        Alamofire.request(domain + "/articles", method: .post, parameters: p).responseJSON(completionHandler: {
+                                            (response: DataResponse) -> Void in
+                                            print("successful sync web content to server")
+                                            print(response)
+                                            self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+                                        })
+                                    }
+                                })
+                        }
                     }
-                }
-                self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-            })
-        } else {
-            print("error")
+                })
+            } else {
+                print("error")
+            }
+        }
+        else {
+            print("app is not logged in")
+        }
+        // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
+    }
+    
+    func sharedApplication() throws -> UIApplication {
+        var responder: UIResponder? = self
+        while responder != nil {
+            if let application = responder as? UIApplication {
+                return application
+            }
+            
+            responder = responder?.next
         }
         
-        // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
+        throw NSError(domain: "UIInputViewController+sharedApplication.swift", code: 1, userInfo: nil)
     }
     
     override func configurationItems() -> [Any]! {

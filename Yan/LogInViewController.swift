@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     var domain: String?
     var loginURL: String?
     var signUpURL: String?
+    let sharedContainer = UserDefaults(suiteName: "YAN")
     
     //MARK: - background image constraints
     @IBOutlet weak var backImageLeftConstraint: NSLayoutConstraint!
@@ -69,7 +70,7 @@ class LoginViewController: UIViewController {
     //MARK: - controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.domain = __domain__
+        self.domain = sharedContainer?.value(forKey: "domain") as? String ?? "http://localhost:3000"
         self.loginURL = domain! + "/login"
         self.signUpURL = domain! + "/register"
         
@@ -94,35 +95,35 @@ class LoginViewController: UIViewController {
     
     
     private func showDialog() {
-        var alertController:UIAlertController?
-        alertController = UIAlertController(title: "Enter server address",
-                                            message: "use IP address and port",
-                                            preferredStyle: .alert)
-        
-        alertController!.addTextField(
-            configurationHandler: {(textField: UITextField!) in
-                textField.placeholder = "http://localhost:3000"
-        })
-        var enteredText: String?
-        let action = UIAlertAction(title: "Submit",
-                                   style: UIAlertActionStyle.default,
-                                   handler: { //[weak self]
-                                    (paramAction:UIAlertAction!) in
-                                    if let textFields = alertController?.textFields{
-                                        let theTextFields = textFields as [UITextField]
-                                        enteredText = theTextFields[0].text
-                                    }
-                                    if enteredText!.count > 0 {
-                                         __domain__ = enteredText!
-                                    }
-                                    print(enteredText!)
-
-        })
-        
-        alertController?.addAction(action)
-        self.present(alertController!,
-                                   animated: true,
-                                   completion: nil)
+//        var alertController:UIAlertController?
+//        alertController = UIAlertController(title: "Enter server address",
+//                                            message: "use IP address and port",
+//                                            preferredStyle: .alert)
+//        
+//        alertController!.addTextField(
+//            configurationHandler: {(textField: UITextField!) in
+//                textField.placeholder = "http://localhost:3000"
+//        })
+//        var enteredText: String?
+//        let action = UIAlertAction(title: "Submit",
+//                                   style: UIAlertActionStyle.default,
+//                                   handler: { //[weak self]
+//                                    (paramAction:UIAlertAction!) in
+//                                    if let textFields = alertController?.textFields{
+//                                        let theTextFields = textFields as [UITextField]
+//                                        enteredText = theTextFields[0].text
+//                                    }
+//                                    if enteredText!.count > 0 {
+//                                         __domain__ = enteredText!
+//                                    }
+//                                    print(enteredText!)
+//
+//        })
+//        
+//        alertController?.addAction(action)
+//        self.present(alertController!,
+//                                   animated: true,
+//                                   completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -160,17 +161,19 @@ class LoginViewController: UIViewController {
                 let token = json["token"].string
                 let userId = json["userId"].string
                 //save token and userId to userDefault
-//                self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
-                self.updateKeyChain(email: email!, password: password!, token: token!, userId: userId!)
+                self.updateUserDefaultsWithCredentials(email: email!,  password: password!, token: token!, userId: userId!)
+//                self.updateKeyChain(email: email!, password: password!, token: token!, userId: userId!)
                 self.presentNextVC()
             }
         }
     }
     
-//    private func updateUserDefaultsWithCredentials(token: String, userId: String) {
-//        UserDefaults.standard.setValue(token, forKey: "token")
-//        UserDefaults.standard.setValue(userId, forKey: "userId")
-//    }
+    private func updateUserDefaultsWithCredentials(email: String, password: String, token: String, userId: String) {
+        sharedContainer?.setValue(token, forKey: "token")
+        sharedContainer?.setValue(userId, forKey: "userId")
+        sharedContainer?.setValue(email, forKey: "email")
+        sharedContainer?.setValue(password, forKey: "password")
+    }
     
     private func presentNextVC() {
 
@@ -224,8 +227,8 @@ class LoginViewController: UIViewController {
                 print("token", json["token"])
                 let token = json["token"].string
                 let userId = json["userId"].string
-//                self.updateUserDefaultsWithCredentials(token: token!, userId: userId!)
-                self.updateKeyChain(email: email!, password: password!, token: token!, userId: userId!)
+                self.updateUserDefaultsWithCredentials(email: email!, password: password!, token: token!, userId: userId!)
+//                self.updateKeyChain(email: email!, password: password!, token: token!, userId: userId!)
                 self.presentNextVC()
             }
             

@@ -53,6 +53,7 @@
 		B8983EA41F5F0C8200DFEE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */; };
 		B8983EA51F5F0C8200DFEE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */; };
 		B89A2A561F7A7CC400F9A006 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */; };
+		B89A2A5D1F7BDF3A00F9A006 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83020511F5D12390014B165 /* ShareViewController.swift */; };
 		B8A61C661F76B7BE00A7CDD9 /* Postal.framework in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB41F750C0B00260A4B /* Postal.framework */; };
 		B8A61C681F76C2EE00A7CDD9 /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A61C671F76C0D700A7CDD9 /* LoginTableViewController.swift */; };
 		B8A61C6A1F77B52A00A7CDD9 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A61C691F77B52A00A7CDD9 /* TabViewController.swift */; };
@@ -155,6 +156,7 @@
 		B897C56D1F5D3686003319A5 /* AMInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMInputView.xib; sourceTree = "<group>"; };
 		B8983EA01F5F09D000DFEE87 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B89A2A591F7BCF2B00F9A006 /* YanShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YanShare.entitlements; sourceTree = "<group>"; };
 		B8A61C671F76C0D700A7CDD9 /* LoginTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
 		B8A61C691F77B52A00A7CDD9 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		B83020501F5D12390014B165 /* YanShare */ = {
 			isa = PBXGroup;
 			children = (
+				B89A2A591F7BCF2B00F9A006 /* YanShare.entitlements */,
 				B83020511F5D12390014B165 /* ShareViewController.swift */,
 				B83020531F5D12390014B165 /* MainInterface.storyboard */,
 				B83020561F5D12390014B165 /* Info.plist */,
@@ -360,6 +363,14 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 5LNF6678VM;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					B86EE3411F5D0B6D00FB6195 = {
 						CreatedOnToolsVersion = 8.0;
@@ -444,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B89A2A5D1F7BDF3A00F9A006 /* ShareViewController.swift in Sources */,
 				B8A61C661F76B7BE00A7CDD9 /* Postal.framework in Sources */,
 				B885BFC01F751C7D00260A4B /* MailsTableViewController.swift in Sources */,
 				B86EE3481F5D0B6D00FB6195 /* MainViewController.swift in Sources */,
@@ -508,6 +520,7 @@
 		B830205A1F5D12390014B165 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = YanShare/YanShare.entitlements;
 				DEVELOPMENT_TEAM = 5LNF6678VM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -525,6 +538,7 @@
 		B830205B1F5D12390014B165 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = YanShare/YanShare.entitlements;
 				DEVELOPMENT_TEAM = 5LNF6678VM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

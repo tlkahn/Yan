@@ -22,9 +22,12 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.tableView?.register(SwipeTableViewCell.self, forCellReuseIdentifier: "cell")
-        let userId = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["userId"] as! String
-        let token = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["token"] as! String
-        let url = __domain__ + "/users/\(userId)/articles"
+//        let userId = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["userId"] as! String
+//        let token = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["token"] as! String
+        let userId = UserDefaults.standard.value(forKey: "userId") as! String
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let domain = UserDefaults.standard.value(forKey: "domain") as? String ?? "http://localhost:3000"
+        let url = domain + "/users/\(userId)/articles"
         articleManager = ArticleManager(userId: userId, token: token, url: url)
         fetchData()
         setupUI()

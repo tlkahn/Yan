@@ -119,6 +119,7 @@ app.get('/users/:user_id/articles', function(req, res) {
         }}).sort({
             _id: -1
         }).toArray(function(err, docs) {
+            console.log(clc.blue(JSON.stringify(docs)))
             callback(docs);
         });
     }
@@ -149,13 +150,21 @@ app.get('/users/:user_id/articles', function(req, res) {
 })
 
 app.post('/articles', function(req, res) {
+    console.log(clc.yellow("posted article from app"))
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         db.collection("articles").insert({
             header: req.body.header,
-            content: req.body.content
+            content: req.body.content,
+            userId: req.body.userId
+        }, (err, docs) => {
+            if (err) {
+                console.log(clc.red("error when inserting new docs"))
+            }
+            console.log(clc.blue("insertion docs completed."))
+            return res.jsonp(docs)
         })
-    });
+    })
 })
 
 if (app.get('env') === 'development') {
