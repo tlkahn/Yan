@@ -36,7 +36,9 @@ class YanShareArticleManagerDelegate : ArticleManagerDelegate {
  
     func fetchRemote (callback: @escaping (NetworkError?, DataResponse<Any>?)->Void) -> Void {
         print("fetching data from \(self.articleManager!.url)")
-        alamoFireManager?.request(self.articleManager!.url, method:.get, parameters:["token": self.articleManager!.token, "topArticleId": self.articleManager!.topArticleId ?? ""])
+        let userId = UserDefaults(suiteName: "YAN")!
+        print("current userId is \(userId)")
+        alamoFireManager?.request(self.articleManager!.url, method:.get, parameters:["token": self.articleManager!.token, "topArticleId": self.articleManager!.topArticleId ?? "", "userId": userId])
             .responseJSON(completionHandler: { (response: DataResponse) -> Void in
                 switch (response.result) {
                 case .success:

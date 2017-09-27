@@ -114,9 +114,9 @@ app.get('/users/:user_id/articles', function(req, res) {
         var collection = db.collection('articles');
         var oid = new ObjectId(topArticleId);
         console.log(clc.yellow("finding docs for ", topArticleId))
-        collection.find({_id: {
-            $gt: oid
-        }}).sort({
+        collection.find({_id: { $gt: oid },
+                      userId: userId
+        }).sort({
             _id: -1
         }).toArray(function(err, docs) {
             console.log(clc.blue(JSON.stringify(docs)))
