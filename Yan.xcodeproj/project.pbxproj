@@ -52,6 +52,7 @@
 		B8983EA21F5F09D000DFEE87 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8983EA01F5F09D000DFEE87 /* Connection.swift */; };
 		B8983EA41F5F0C8200DFEE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */; };
 		B8983EA51F5F0C8200DFEE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */; };
+		B89A2A561F7A7CC400F9A006 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */; };
 		B8A61C661F76B7BE00A7CDD9 /* Postal.framework in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB41F750C0B00260A4B /* Postal.framework */; };
 		B8A61C681F76C2EE00A7CDD9 /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A61C671F76C0D700A7CDD9 /* LoginTableViewController.swift */; };
 		B8A61C6A1F77B52A00A7CDD9 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A61C691F77B52A00A7CDD9 /* TabViewController.swift */; };
@@ -435,6 +436,7 @@
 				B844951B1F5D7BC0004DEC7E /* FakeService.swift in Sources */,
 				B83020521F5D12390014B165 /* ShareViewController.swift in Sources */,
 				B84495161F5D7BB2004DEC7E /* JTFullTableViewController.swift in Sources */,
+				B89A2A561F7A7CC400F9A006 /* UIViewController+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

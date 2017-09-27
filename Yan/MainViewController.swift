@@ -41,6 +41,7 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
         articleManager?.retrieve { (error, resultsFromLocal) in
             if let error = error {
                 print(error)
+                self.refreshControl!.endRefreshing()
             }
             self.results = resultsFromLocal!
             self.tableView.reloadData()
@@ -57,13 +58,15 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
         articleManager?.retrieveFromRemoteAndSyncWithLocal { (error, resultsFromRemote) in
             if let error = error {
                 print(error)
+                self.showAlertError("Network Error", message: error.localizedDescription)
                 self.refreshControl!.endRefreshing()
             }
-            self.results += resultsFromRemote!
-            self.tableView.reloadData()
-//            self.updateBadge()
-            SVProgressHUD.showInfo(withStatus: "\(resultsFromRemote!.count) new entries")
-            self.refreshControl!.endRefreshing()
+            else {
+                self.results += resultsFromRemote!
+                self.tableView.reloadData()
+                SVProgressHUD.showInfo(withStatus: "\(resultsFromRemote!.count) new entries")
+                self.refreshControl!.endRefreshing()
+            }
         }
     }
     

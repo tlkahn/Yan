@@ -11,8 +11,12 @@ class FetchArticleResult: NSObject {
     var content: String = ""
 }
 
+enum NetworkError: Error {
+    case timeout
+}
+
 protocol ArticleManagerDelegate {
-    func fetchRemote(callback: @escaping (DataResponse<Any>)->Void) -> Void
+    func fetchRemote(callback: @escaping (NetworkError?, DataResponse<Any>?)->Void) -> Void
     func fetchLocal(callback: @escaping ([NSManagedObject]?) -> Void) -> Void
 }
 
@@ -23,11 +27,24 @@ class YanShareArticleManagerDelegate : ArticleManagerDelegate {
     init(_ articleManager: ArticleManager) {
         self.articleManager = articleManager
     }
-    
-    func fetchRemote (callback: @escaping (DataResponse<Any>)->Void) -> Void {
-        Alamofire.request(self.articleManager!.url, method: .get, parameters: ["token": self.articleManager!.token, "topArticleId": self.articleManager!.topArticleId])
+ 
+    func fetchRemote (callback: @escaping (NetworkError?, DataResponse<Any>?)->Void) -> Void {
+        Alamofire.request(self.articleManager!.url, method: .get, parameters: ["token": self.articleManager!.token, "topArticleId": self.articleManager!.topArticleId!])
             .responseJSON(completionHandler: { (response: DataResponse) -> Void in
-                callback(response)
+                switch (response.result) {
+                case .success:
+                    print("fetch data from server successful.")
+                    callback(nil, response)
+                    break
+                case .failure(let error):
+                    if error._code == NSURLErrorTimedOut {
+                        callback(.timeout, nil)
+                    }
+                    else {
+                        print("\n\nAuth request failed with error:\n \(error)")
+                    }
+                    break
+                }
             })
     }
     
@@ -49,7 +66,7 @@ class ArticleManager {
     var url: String
     var userId: String = ""
     var token: String = ""
-    var topArticleId = ""
+    var topArticleId: String?
     var delegate: ArticleManagerDelegate?
     
     init(userId: String, token: String, url: String) {
@@ -57,6 +74,12 @@ class ArticleManager {
         self.token = token
         self.url = url
         self.delegate = YanShareArticleManagerDelegate(self)
+        if let aid = UserDefaults.standard.string(forKey: "topArticleId") {
+            topArticleId = aid
+        }
+        else {
+            topArticleId = ""
+        }
     }
 
     func retrieve (offset: Int = 0, completion: @escaping ((Error?, [NSManagedObject?]?) -> Void)) {
@@ -86,14 +109,23 @@ class ArticleManager {
         self.syncServerAndUpdateLocal(offset: offset, completion: completion)
     }
     
+    private func saveTopArticleId(_ topArticleId: String) {
+        UserDefaults.standard.set(topArticleId, forKey: "topArticleId")
+    }
+    
     public func syncServerAndUpdateLocal(offset: Int = 0, completion: @escaping ((Error?, [NSManagedObject?]?) -> Void)) {
         var data: [FetchArticleResult?] = []
-        self.fetchRemote() {
-            (response: DataResponse) in
-            let json = JSON(data: response.data!)
+        self.fetchRemote() { (error: NetworkError?, response: DataResponse?) in
+            
+            if let e = error {
+                return completion(e, nil)
+            }
+            
+            let json = JSON(data: (response?.data)!)
             if json.count > 0 {
                 self.topArticleId = json[0]["_id"].string!
-                print("top Article Id: ", self.topArticleId)
+                self.saveTopArticleId(self.topArticleId!)
+                print("top Article Id: ", self.topArticleId!)
                 for (_, subJson) in json {
                     let fetchResult = FetchArticleResult()
                     fetchResult.header = subJson["header"].string!
@@ -132,7 +164,7 @@ class ArticleManager {
         }
     }
 
-    private func fetchRemote (callback: @escaping (DataResponse<Any>)->Void) -> Void {
+    private func fetchRemote (callback: @escaping (NetworkError?, DataResponse<Any>?)->Void) -> Void {
         self.delegate?.fetchRemote(callback: callback)
     }
     
