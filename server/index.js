@@ -29,7 +29,7 @@ var bodyParser = require('body-parser');
 const app = express()
 
 app.use(logger('dev'));
-
+app.set('json spaces', 40);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -113,7 +113,8 @@ app.get('/users/:user_id/articles', function(req, res) {
     var findDocuments = function(db, userId, topArticleId, callback) {
         var collection = db.collection('articles');
         var oid = new ObjectId(topArticleId);
-        collection.find({userId: userId, _id: {
+        console.log(clc.yellow("finding docs for ", topArticleId))
+        collection.find({_id: {
             $gt: oid
         }}).sort({
             _id: -1
@@ -124,7 +125,9 @@ app.get('/users/:user_id/articles', function(req, res) {
 
     let token = req.query.token
     let topArticleId = req.query.topArticleId
-    if (topArticleId.length == 0) {
+    console.log(clc.green("token: ", token))
+    console.log(clc.green("top article id: ", topArticleId))
+    if (typeof topArticleId == "undefined" || topArticleId.length == 0) {
         topArticleId = 0
     }
 
@@ -133,12 +136,12 @@ app.get('/users/:user_id/articles', function(req, res) {
         let userId = decodedObj.userId
         MongoClient.connect(url, function(err, db) {
             findDocuments(db, userId, topArticleId, function(docs) {
-                res.jsonp(docs)
+                return res.jsonp(docs)
             });
         });
     }
     else {
-        res.jsonp({
+        return res.jsonp({
             status: 'failure',
             message: 'unauthorized'
         })

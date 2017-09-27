@@ -23,13 +23,20 @@ protocol ArticleManagerDelegate {
 class YanShareArticleManagerDelegate : ArticleManagerDelegate {
     
     var articleManager: ArticleManager?
+    var alamoFireManager: SessionManager?
     
     init(_ articleManager: ArticleManager) {
         self.articleManager = articleManager
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 4 // seconds
+        configuration.timeoutIntervalForResource = 4
+        alamoFireManager = Alamofire.SessionManager(configuration: configuration)
     }
  
     func fetchRemote (callback: @escaping (NetworkError?, DataResponse<Any>?)->Void) -> Void {
-        Alamofire.request(self.articleManager!.url, method: .get, parameters: ["token": self.articleManager!.token, "topArticleId": self.articleManager!.topArticleId!])
+        print("fetching data from \(self.articleManager!.url)")
+        alamoFireManager?.request(self.articleManager!.url, method:.get, parameters:["token": self.articleManager!.token, "topArticleId": self.articleManager!.topArticleId ?? ""])
             .responseJSON(completionHandler: { (response: DataResponse) -> Void in
                 switch (response.result) {
                 case .success:

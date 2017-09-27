@@ -62,7 +62,7 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
                 self.refreshControl!.endRefreshing()
             }
             else {
-                self.results += resultsFromRemote!
+                self.results = resultsFromRemote! + self.results
                 self.tableView.reloadData()
                 SVProgressHUD.showInfo(withStatus: "\(resultsFromRemote!.count) new entries")
                 self.refreshControl!.endRefreshing()
