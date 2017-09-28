@@ -18,7 +18,7 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
     var lastIndex = 0
     var articleManager: ArticleManager?
     var results: [NSManagedObject?] = []
-    var sharedContainer = UserDefaults.init(suiteName: "YAN")
+    var sharedContainer = UserDefaults.init(suiteName: "group.YAN.com.apollomillennium")
     var userId: String?
     var token: String?
     var domain: String?
@@ -39,7 +39,7 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
     private func setUpState() {
         userId = self.sharedContainer?.value(forKey: "userId") as? String
         token = self.sharedContainer?.value(forKey: "token") as? String
-        domain = self.sharedContainer?.value(forKey: "domain") as? String ?? "http://localhost:3000"
+        domain = self.sharedContainer?.value(forKey: "domain") as? String ?? "http://54.183.68.49:3000"
     }
     
     func setupPullToRefresh() {

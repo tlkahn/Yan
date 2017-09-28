@@ -15,7 +15,7 @@ import Locksmith
 
 class ShareViewController: SLComposeServiceViewController {
     
-    let sharedContainer = UserDefaults(suiteName: "YAN")
+    let sharedContainer = UserDefaults(suiteName: "group.YAN.com.apollomillennium")
     
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
@@ -24,7 +24,7 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func didSelectPost() {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-        let domain = sharedContainer!.value(forKey: "domain") as? String ?? "http://localhost:3000"
+        let domain = sharedContainer!.value(forKey: "domain") as? String ?? "http://54.183.68.49:3000"
 //        if let userId = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["email"] {
         if let userId = sharedContainer!.value(forKey: "userId") {
             let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem

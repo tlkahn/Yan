@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     var domain: String?
     var loginURL: String?
     var signUpURL: String?
-    let sharedContainer = UserDefaults(suiteName: "YAN")
+    let sharedContainer = UserDefaults(suiteName: "group.YAN.com.apollomillennium")
     
     //MARK: - background image constraints
     @IBOutlet weak var backImageLeftConstraint: NSLayoutConstraint!
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
     //MARK: - controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.domain = sharedContainer?.value(forKey: "domain") as? String ?? "http://localhost:3000"
+        self.domain = sharedContainer?.value(forKey: "domain") as? String ?? "http://54.183.68.49:3000"
         self.loginURL = domain! + "/login"
         self.signUpURL = domain! + "/register"
         

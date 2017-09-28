@@ -33,8 +33,8 @@
 		B86EE34B1F5D0B6D00FB6195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE3491F5D0B6D00FB6195 /* Main.storyboard */; };
 		B86EE3501F5D0B6D00FB6195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE34E1F5D0B6D00FB6195 /* LaunchScreen.storyboard */; };
 		B86EE3581F5D0B7B00FB6195 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B86EE3571F5D0B7B00FB6195 /* piano.mp3 */; };
-		B885BFB51F750C2300260A4B /* Postal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFB41F750C0B00260A4B /* Postal.framework */; };
-		B885BFB61F750C2300260A4B /* Postal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFB41F750C0B00260A4B /* Postal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B87FA4FA1F7D19A5009689F6 /* Postal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FA4F91F7D19A5009689F6 /* Postal.framework */; };
+		B87FA4FB1F7D19A5009689F6 /* Postal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B87FA4F91F7D19A5009689F6 /* Postal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B885BFB71F750C2300260A4B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFB31F750C0B00260A4B /* Result.framework */; };
 		B885BFB81F750C2300260A4B /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B885BFB31F750C0B00260A4B /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B885BFBC1F751C1400260A4B /* AddAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFBA1F75192300260A4B /* AddAccountTableViewController.swift */; };
@@ -54,7 +54,6 @@
 		B8983EA51F5F0C8200DFEE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8983EA31F5F0C8200DFEE87 /* Assets.xcassets */; };
 		B89A2A561F7A7CC400F9A006 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */; };
 		B89A2A5D1F7BDF3A00F9A006 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83020511F5D12390014B165 /* ShareViewController.swift */; };
-		B8A61C661F76B7BE00A7CDD9 /* Postal.framework in Sources */ = {isa = PBXBuildFile; fileRef = B885BFB41F750C0B00260A4B /* Postal.framework */; };
 		B8A61C681F76C2EE00A7CDD9 /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A61C671F76C0D700A7CDD9 /* LoginTableViewController.swift */; };
 		B8A61C6A1F77B52A00A7CDD9 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A61C691F77B52A00A7CDD9 /* TabViewController.swift */; };
 		B8AB76F71F5F20D400A57D34 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */; };
@@ -109,7 +108,7 @@
 				B885BFB81F750C2300260A4B /* Result.framework in Embed Frameworks */,
 				B8DE3FA51F75F8AE00FAF9EF /* Locksmith.framework in Embed Frameworks */,
 				B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */,
-				B885BFB61F750C2300260A4B /* Postal.framework in Embed Frameworks */,
+				B87FA4FB1F7D19A5009689F6 /* Postal.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,8 +139,8 @@
 		B86EE34F1F5D0B6D00FB6195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B86EE3511F5D0B6D00FB6195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B86EE3571F5D0B7B00FB6195 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
+		B87FA4F91F7D19A5009689F6 /* Postal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Postal.framework; path = Carthage/Build/iOS/Postal.framework; sourceTree = "<group>"; };
 		B885BFB31F750C0B00260A4B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		B885BFB41F750C0B00260A4B /* Postal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Postal.framework; path = Carthage/Build/iOS/Postal.framework; sourceTree = "<group>"; };
 		B885BFB91F75121F00260A4B /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Helpers.swift"; path = "Carthage/Checkouts/Postal/PostalDemo/PostalDemo/UIViewController+Helpers.swift"; sourceTree = SOURCE_ROOT; };
 		B885BFBA1F75192300260A4B /* AddAccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddAccountTableViewController.swift; path = Carthage/Checkouts/Postal/PostalDemo/PostalDemo/AddAccountTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		B885BFBF1F751C7800260A4B /* MailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailsTableViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B885BFE21F75674400260A4B /* Security.framework in Frameworks */,
+				B87FA4FA1F7D19A5009689F6 /* Postal.framework in Frameworks */,
 				B885BFE01F75673D00260A4B /* CFNetwork.framework in Frameworks */,
 				B8AB76F71F5F20D400A57D34 /* SwipeCellKit.framework in Frameworks */,
 				B8AB76F91F5F20D400A57D34 /* Alamofire.framework in Frameworks */,
@@ -195,7 +195,6 @@
 				B8DE3FAA1F76362300FAF9EF /* SVProgressHUD.framework in Frameworks */,
 				B8C4CA4B1F79445C0051015C /* Hydra.framework in Frameworks */,
 				B8AB76FB1F5F20D400A57D34 /* SwiftyJSON.framework in Frameworks */,
-				B885BFB51F750C2300260A4B /* Postal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +218,6 @@
 			children = (
 				B885BFE11F75674400260A4B /* Security.framework */,
 				B885BFDF1F75673D00260A4B /* CFNetwork.framework */,
-				B885BFB41F750C0B00260A4B /* Postal.framework */,
 				B885BFB31F750C0B00260A4B /* Result.framework */,
 				B8B1B8341F5EF55800A8C941 /* SwipeCellKit.framework */,
 				B83020641F5D143C0014B165 /* Alamofire.framework */,
@@ -231,6 +229,7 @@
 		B86EE3391F5D0B6D00FB6195 = {
 			isa = PBXGroup;
 			children = (
+				B87FA4F91F7D19A5009689F6 /* Postal.framework */,
 				B8C4CA4A1F79445C0051015C /* Hydra.framework */,
 				B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */,
 				B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */,
@@ -456,7 +455,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B89A2A5D1F7BDF3A00F9A006 /* ShareViewController.swift in Sources */,
-				B8A61C661F76B7BE00A7CDD9 /* Postal.framework in Sources */,
 				B885BFC01F751C7D00260A4B /* MailsTableViewController.swift in Sources */,
 				B86EE3481F5D0B6D00FB6195 /* MainViewController.swift in Sources */,
 				B8C4CA491F789C760051015C /* NetworkDoctor.swift in Sources */,
