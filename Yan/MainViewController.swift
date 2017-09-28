@@ -18,20 +18,28 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
     var lastIndex = 0
     var articleManager: ArticleManager?
     var results: [NSManagedObject?] = []
+    var sharedContainer = UserDefaults.init(suiteName: "YAN")
+    var userId: String?
+    var token: String?
+    var domain: String?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.tableView?.register(SwipeTableViewCell.self, forCellReuseIdentifier: "cell")
 //        let userId = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["userId"] as! String
 //        let token = Locksmith.loadDataForUserAccount(userAccount: "Yan")?["token"] as! String
-        let userId = UserDefaults.standard.value(forKey: "userId") as! String
-        let token = UserDefaults.standard.value(forKey: "token") as! String
-        let domain = UserDefaults.standard.value(forKey: "domain") as? String ?? "http://localhost:3000"
-        let url = domain + "/users/\(userId)/articles"
-        articleManager = ArticleManager(userId: userId, token: token, url: url)
+        setUpState()
+        let url = domain! + "/users/\(userId!)/articles"
+        articleManager = ArticleManager(userId: userId!, token: token!, url: url)
         fetchData()
         setupUI()
         setupPullToRefresh()
+    }
+    
+    private func setUpState() {
+        userId = self.sharedContainer?.value(forKey: "userId") as? String
+        token = self.sharedContainer?.value(forKey: "token") as? String
+        domain = self.sharedContainer?.value(forKey: "domain") as? String ?? "http://localhost:3000"
     }
     
     func setupPullToRefresh() {

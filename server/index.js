@@ -1,12 +1,24 @@
 require('dotenv').config()
 const mongo = require('mongodb')
 var MongoClient = mongo.MongoClient;
-var url = "mongodb://127.0.0.1:27017/test";
+var clc = require('cli-color');
+
+let DATABASEUSERNAME = process.env.dbuser
+let DATABASEPASSWORD = process.env.dbpassword
+var url = "mongodb://"+DATABASEUSERNAME+':'+DATABASEPASSWORD+'@'+"ds064198.mlab.com:64198/yanserver";
+// var url = "mongodb://localhost/test";
+console.log(clc.blue("url: ", url))
+console.log(clc.yellow("DATABASEUSERNAME: ", DATABASEUSERNAME))
+console.log(clc.yellow("DATABASEPASSWORD: ", DATABASEPASSWORD))
 var logger = require('morgan');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var clc = require('cli-color');
+
 var ObjectId = require('mongodb').ObjectID;
+
+process.on('uncaughtException', function(err) {
+    console.log(err)
+})
 
 const jwt = require('jwt-simple');
 const secret = process.env.secret;
@@ -22,7 +34,6 @@ const logError = function(err) {
 const logSuccess = function (message) {
     console.log(clc.blue(message));
 }
-
 
 const express = require('express')
 var bodyParser = require('body-parser');
@@ -55,7 +66,10 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://localhost/test');
+console.log("mongoose url: ", url)
+mongoose.connect(url, {
+    useMongoClient: true
+});
 
 app.post('/register', (req, res, next) => {
     console.log("req.body.username", req.body.username)
@@ -109,34 +123,46 @@ app.get('/', function(req, res) {
 })
 
 app.get('/users/:user_id/articles', function(req, res) {
-
     var findDocuments = function(db, userId, topArticleId, callback) {
+        console.log(clc.yellow("starting to retrieving docs from: ", db))
         var collection = db.collection('articles');
         var oid = new ObjectId(topArticleId);
-        console.log(clc.yellow("finding docs for ", topArticleId))
-        collection.find({_id: { $gt: oid },
+        console.log(clc.yellow("finding docs"))
+        let results = collection.find({_id: { $gt: oid },
                       userId: userId
-        }).sort({
-            _id: -1
-        }).toArray(function(err, docs) {
-            console.log(clc.blue(JSON.stringify(docs)))
-            callback(docs);
-        });
+        })
+        if (results) {
+            return results.sort({
+                _id: -1
+            }).toArray(function(err, docs) {
+                if (err) {
+                    return callback(err, [])
+                }
+                console.log(clc.yellow(JSON.stringify(docs)))
+                return callback(null, docs);
+            });
+        }
     }
 
     let token = req.query.token
     let topArticleId = req.query.topArticleId
-    console.log(clc.green("token: ", token))
-    console.log(clc.green("top article id: ", topArticleId))
+    console.log(clc.blue("token: ", token))
     if (typeof topArticleId == "undefined" || topArticleId.length == 0) {
         topArticleId = 0
     }
-
+    console.log(clc.blue("top article id: ", topArticleId))
     if (typeof token !== 'undefined' && token) {
         let decodedObj = jwt.decode(token, secret);
         let userId = decodedObj.userId
         MongoClient.connect(url, function(err, db) {
-            findDocuments(db, userId, topArticleId, function(docs) {
+            findDocuments(db, userId, topArticleId, function(err, docs) {
+                if (err) {
+                    console.log("error when retrieving docs:", err)
+                    res.jsonp({
+                        "status": "failure",
+                        "message": err
+                    })
+                }
                 return res.jsonp(docs)
             });
         });
