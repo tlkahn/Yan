@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let domain: String = "http://54.183.68.49:3000"
+        let domain: String = "https://apollomillenniumcapital.com"
         UserDefaults.standard.set(domain, forKey: domain)
         
         mainYanShareVC = MainViewController()

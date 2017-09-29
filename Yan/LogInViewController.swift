@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
     //MARK: - controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.domain = sharedContainer?.value(forKey: "domain") as? String ?? "http://54.183.68.49:3000"
+        self.domain = sharedContainer?.value(forKey: "domain") as? String ?? "https://apollomillenniumcapital.com"
         self.loginURL = domain! + "/login"
         self.signUpURL = domain! + "/register"
         

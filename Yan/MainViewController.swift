@@ -39,7 +39,7 @@ public class MainViewController:  UITableViewController, SwipeTableViewCellDeleg
     private func setUpState() {
         userId = self.sharedContainer?.value(forKey: "userId") as? String
         token = self.sharedContainer?.value(forKey: "token") as? String
-        domain = self.sharedContainer?.value(forKey: "domain") as? String ?? "http://54.183.68.49:3000"
+        domain = self.sharedContainer?.value(forKey: "domain") as? String ?? "https://apollomillenniumcapital.com"
     }
     
     func setupPullToRefresh() {
