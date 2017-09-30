@@ -64,13 +64,11 @@
 		B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B83020651F5D143C0014B165 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8B1B8381F5EFD2500A8C941 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B1B8371F5EFD2500A8C941 /* ConnectionViewController.swift */; };
 		B8C4CA491F789C760051015C /* NetworkDoctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C4CA481F789C760051015C /* NetworkDoctor.swift */; };
-		B8C4CA4B1F79445C0051015C /* Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C4CA4A1F79445C0051015C /* Hydra.framework */; };
-		B8C4CA4C1F79445C0051015C /* Hydra.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8C4CA4A1F79445C0051015C /* Hydra.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8DE3FA41F75F8AE00FAF9EF /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; };
-		B8DE3FA51F75F8AE00FAF9EF /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8DE3FAA1F76362300FAF9EF /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */; };
 		B8DE3FAB1F76362300FAF9EF /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA91F76362200FAF9EF /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8DE3FAE1F7636FB00FAF9EF /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DE3FAD1F76362E00FAF9EF /* CollectionsViewController.swift */; };
+		B8E1EC8C1F7DF6C60099D7B5 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; };
+		B8E1EC8D1F7DF6C60099D7B5 /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DE3FA31F75F8AE00FAF9EF /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,10 +102,9 @@
 				B8DE3FAB1F76362300FAF9EF /* SVProgressHUD.framework in Embed Frameworks */,
 				B8AB76F81F5F20D400A57D34 /* SwipeCellKit.framework in Embed Frameworks */,
 				B8AB76FA1F5F20D400A57D34 /* Alamofire.framework in Embed Frameworks */,
-				B8C4CA4C1F79445C0051015C /* Hydra.framework in Embed Frameworks */,
 				B885BFB81F750C2300260A4B /* Result.framework in Embed Frameworks */,
-				B8DE3FA51F75F8AE00FAF9EF /* Locksmith.framework in Embed Frameworks */,
 				B8AB76FC1F5F20D400A57D34 /* SwiftyJSON.framework in Embed Frameworks */,
+				B8E1EC8D1F7DF6C60099D7B5 /* Locksmith.framework in Embed Frameworks */,
 				B87FA4FB1F7D19A5009689F6 /* Postal.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -185,15 +182,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8E1EC8C1F7DF6C60099D7B5 /* Locksmith.framework in Frameworks */,
 				B885BFE21F75674400260A4B /* Security.framework in Frameworks */,
 				B87FA4FA1F7D19A5009689F6 /* Postal.framework in Frameworks */,
 				B885BFE01F75673D00260A4B /* CFNetwork.framework in Frameworks */,
 				B8AB76F71F5F20D400A57D34 /* SwipeCellKit.framework in Frameworks */,
 				B8AB76F91F5F20D400A57D34 /* Alamofire.framework in Frameworks */,
 				B885BFB71F750C2300260A4B /* Result.framework in Frameworks */,
-				B8DE3FA41F75F8AE00FAF9EF /* Locksmith.framework in Frameworks */,
 				B8DE3FAA1F76362300FAF9EF /* SVProgressHUD.framework in Frameworks */,
-				B8C4CA4B1F79445C0051015C /* Hydra.framework in Frameworks */,
 				B8AB76FB1F5F20D400A57D34 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +333,7 @@
 				B86EE3401F5D0B6D00FB6195 /* Resources */,
 				B830205D1F5D12390014B165 /* Embed App Extensions */,
 				B8AB76FD1F5F20D400A57D34 /* Embed Frameworks */,
+				B8E1EC8B1F7DF63A0099D7B5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -434,6 +431,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B8E1EC8B1F7DF63A0099D7B5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Postal.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Locksmith.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwipeCellKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\nfind Carthage -type f -name \"*.xcscheme\" -print0 | xargs -0 perl -pi -e 's/codeCoverageEnabled = \"YES\"/codeCoverageEnabled = \"NO\"/g'";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B830204B1F5D12390014B165 /* Sources */ = {
